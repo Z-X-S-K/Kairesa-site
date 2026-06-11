@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F7F4EC"/>
+  <circle cx="1040" cy="120" r="260" fill="#E7D8B8" opacity="0.75"/>
+  <rect x="90" y="86" width="1020" height="458" rx="42" fill="#111111"/>
+  <text x="150" y="245" font-family="Arial, sans-serif" font-size="88" font-weight="700" fill="#F7F4EC">Kairesa</text>
+  <text x="150" y="340" font-family="Arial, sans-serif" font-size="54" font-weight="700" fill="#D0A860">Clarity Through Structure.</text>
+  <text x="150" y="420" font-family="Arial, sans-serif" font-size="30" fill="#F7F4EC">Strategy · Operations · Compliance Support</text>
+</svg>
