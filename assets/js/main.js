@@ -1,5 +1,5 @@
 import { siteConfig } from "./config.js";
-import { services, processSteps, useCases, values, insights, faqs } from "./data.js";
+import { services, metrics, processSteps, packages, modules, lensRows, useCases, values, proofPoints, insights, faqs } from "./data.js";
 
 const $ = (selector, scope = document) => scope.querySelector(selector);
 const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
@@ -15,7 +15,7 @@ function escapeHtml(value = "") {
 
 function currentPageName() {
   const path = window.location.pathname.split("/").pop() || "index.html";
-  return path;
+  return path === "" ? "index.html" : path;
 }
 
 function toast(message) {
@@ -28,7 +28,30 @@ function toast(message) {
 }
 
 function encodeMailto({ to = siteConfig.email, subject = "", body = "" }) {
-  return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const address = to ? encodeURIComponent(to) : "";
+  return `mailto:${address}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+async function copyText(text, successMessage = "Copied") {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      toast(successMessage);
+      return;
+    }
+    const temp = document.createElement("textarea");
+    temp.value = text;
+    temp.setAttribute("readonly", "");
+    temp.style.position = "fixed";
+    temp.style.left = "-9999px";
+    document.body.appendChild(temp);
+    temp.select();
+    document.execCommand("copy");
+    document.body.removeChild(temp);
+    toast(successMessage);
+  } catch (error) {
+    toast("Copy failed. Please copy manually.");
+  }
 }
 
 function buildHeader() {
@@ -123,8 +146,8 @@ function setupTheme() {
 }
 
 function setupReveal() {
-  const items = $$(".reveal");
-  if (!items.length || !('IntersectionObserver' in window)) {
+  const items = $$(".reveal:not(.visible)");
+  if (!items.length || !("IntersectionObserver" in window)) {
     items.forEach(el => el.classList.add("visible"));
     return;
   }
@@ -135,16 +158,17 @@ function setupReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
   items.forEach(el => observer.observe(el));
 }
 
 function serviceCard(service, compact = false) {
+  const keywords = `${service.title} ${service.tag} ${service.summary} ${service.details} ${service.deliverables.join(" ")} ${(service.examples || []).join(" ")}`.toLowerCase();
   return `
-    <article class="service-card reveal" data-service-card data-keywords="${escapeHtml(`${service.title} ${service.tag} ${service.summary} ${service.details} ${service.deliverables.join(" ")}`.toLowerCase())}">
+    <article class="service-card reveal" data-service-card data-keywords="${escapeHtml(keywords)}">
       <div class="card-top">
         <span class="pill">${escapeHtml(service.tag)}</span>
-        <span class="card-index">${escapeHtml(service.id.split('-')[0])}</span>
+        <span class="card-index">${escapeHtml(service.id.split('-').slice(0, 2).join(' '))}</span>
       </div>
       <h3>${escapeHtml(service.title)}</h3>
       <p>${escapeHtml(service.summary)}</p>
@@ -152,7 +176,9 @@ function serviceCard(service, compact = false) {
         <button class="text-button" data-expand-card>View deliverables</button>
         <div class="service-extra">
           <p>${escapeHtml(service.details)}</p>
+          <strong>Common outputs</strong>
           <ul>${service.deliverables.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+          ${(service.examples || []).length ? `<strong>Examples</strong><ul>${service.examples.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>` : ""}
         </div>`}
     </article>`;
 }
@@ -160,7 +186,17 @@ function serviceCard(service, compact = false) {
 function renderFeaturedServices() {
   const el = $("#featured-services");
   if (!el) return;
-  el.innerHTML = services.map(s => serviceCard(s, true)).join("");
+  el.innerHTML = services.slice(0, 4).map(s => serviceCard(s, true)).join("");
+}
+
+function renderMetrics() {
+  const el = $("#metric-strip");
+  if (!el) return;
+  el.innerHTML = metrics.map(item => `
+    <article class="metric-card reveal">
+      <strong>${escapeHtml(item.value)}</strong>
+      <span>${escapeHtml(item.label)}</span>
+    </article>`).join("");
 }
 
 function renderServicesList() {
@@ -206,12 +242,50 @@ function renderProcess() {
   });
 }
 
+function renderPackages() {
+  const el = $("#package-grid");
+  if (!el) return;
+  el.innerHTML = packages.map(item => `
+    <article class="package-card reveal ${item.featured ? 'featured' : ''}">
+      <div class="card-top">
+        <span class="pill">${escapeHtml(item.note)}</span>
+      </div>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p>${escapeHtml(item.summary)}</p>
+      <ul>${item.items.map(line => `<li>${escapeHtml(line)}</li>`).join("")}</ul>
+    </article>`).join("");
+}
+
+function renderModules() {
+  const el = $("#module-grid");
+  if (!el) return;
+  el.innerHTML = modules.map(item => `
+    <article class="module-card reveal">
+      <span class="module-icon">${escapeHtml(item.icon)}</span>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p>${escapeHtml(item.text)}</p>
+    </article>`).join("");
+}
+
+function renderLens() {
+  const el = $("#lens-list");
+  if (!el) return;
+  el.innerHTML = lensRows.map((item, index) => `
+    <div class="lens-row reveal">
+      <span>${index + 1}</span>
+      <div>
+        <strong>${escapeHtml(item.title)}</strong>
+        <p>${escapeHtml(item.text)}</p>
+      </div>
+    </div>`).join("");
+}
+
 function renderScopeBuilder() {
   const el = $("#scope-builder");
   if (!el) return;
   el.innerHTML = `
     <div class="scope-options">
-      ${services.map(s => `
+      ${services.slice(0, 6).map(s => `
         <label class="scope-option">
           <input type="checkbox" value="${escapeHtml(s.title)}" />
           <span>${escapeHtml(s.title)}</span>
@@ -226,7 +300,7 @@ function renderScopeBuilder() {
     </div>`;
 
   const getBrief = () => {
-    const selected = $$('input[type="checkbox"]:checked', el).map(input => input.value);
+    const selected = $$("input[type='checkbox']:checked", el).map(input => input.value);
     const note = $("#scope-note", el).value.trim();
     return [
       "Hello Kairesa,",
@@ -246,10 +320,7 @@ function renderScopeBuilder() {
       body: getBrief()
     });
   });
-  $("#scope-copy", el).addEventListener("click", async () => {
-    await navigator.clipboard.writeText(getBrief());
-    toast("Project brief copied");
-  });
+  $("#scope-copy", el).addEventListener("click", () => copyText(getBrief(), "Project brief copied"));
 }
 
 function renderUseCases() {
@@ -272,6 +343,16 @@ function renderValues() {
     </article>`).join("");
 }
 
+function renderProofPoints() {
+  const el = $("#proof-grid");
+  if (!el) return;
+  el.innerHTML = proofPoints.map(item => `
+    <article class="proof-card reveal">
+      <h2>${escapeHtml(item.title)}</h2>
+      <p>${escapeHtml(item.text)}</p>
+    </article>`).join("");
+}
+
 function renderInsights() {
   const el = $("#insight-grid");
   if (!el) return;
@@ -282,7 +363,24 @@ function renderInsights() {
         <h2>${escapeHtml(item.title)}</h2>
         <p>${escapeHtml(item.excerpt)}</p>
         <small>${escapeHtml(item.date)}</small>
+        <div class="insight-actions">
+          <button class="text-button" data-copy-insight="${escapeHtml(item.title)}">Copy title</button>
+          <button class="text-button" data-email-insight="${escapeHtml(item.title)}">Email this note</button>
+        </div>
       </article>`).join("");
+
+    $$('[data-copy-insight]', el).forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.dataset.copyInsight, "Insight title copied"));
+    });
+    $$('[data-email-insight]', el).forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.location.href = encodeMailto({
+          to: "",
+          subject: btn.dataset.emailInsight,
+          body: `${btn.dataset.emailInsight}\n\n${siteConfig.domain}/insights.html`
+        });
+      });
+    });
     setupReveal();
   };
   render(insights);
@@ -321,6 +419,7 @@ function setupContactForm() {
       `Email: ${data.email || ""}`,
       `Company / project: ${data.company || ""}`,
       `Topic: ${data.topic || ""}`,
+      `Preferred next step: ${data.nextStep || ""}`,
       "",
       "Message:",
       data.message || "",
@@ -360,11 +459,14 @@ function setupShareButtons() {
         text: siteConfig.description,
         url: siteConfig.domain || window.location.href
       };
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(shareData.url);
-        toast("Website link copied");
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await copyText(shareData.url, "Website link copied");
+        }
+      } catch (error) {
+        // User may cancel native share; no action needed.
       }
     });
   });
@@ -386,10 +488,7 @@ function setupShareButtons() {
   });
 
   $$('[data-copy-email]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      await navigator.clipboard.writeText(siteConfig.email);
-      toast("Email copied");
-    });
+    btn.addEventListener('click', () => copyText(siteConfig.email, "Email copied"));
   });
 }
 
@@ -398,12 +497,17 @@ function init() {
   buildFooter();
   setupMenu();
   setupTheme();
+  renderMetrics();
   renderFeaturedServices();
   renderServicesList();
   renderProcess();
+  renderPackages();
+  renderModules();
+  renderLens();
   renderScopeBuilder();
   renderUseCases();
   renderValues();
+  renderProofPoints();
   renderInsights();
   renderFaq();
   setupContactForm();

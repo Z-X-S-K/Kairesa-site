@@ -1,122 +1,107 @@
 # Kairesa Website
 
-这是一个可以直接上传到 GitHub Pages 的模块化静态公司网站。
+Static modular company website for GitHub Pages.
 
-## 文件结构
+## Upload
+
+Upload every file in this folder to the root of your GitHub repository. Do not upload the ZIP itself and do not place these files inside another folder.
+
+Correct structure:
 
 ```text
-.
-├── index.html
-├── services.html
-├── about.html
-├── insights.html
-├── contact.html
-├── 404.html
-├── CNAME
-├── robots.txt
-├── sitemap.xml
-└── assets
-    ├── css
-    │   └── styles.css
-    ├── js
-    │   ├── config.js
-    │   ├── data.js
-    │   └── main.js
-    └── img
-        ├── logo.svg
-        ├── favicon.svg
-        └── og-image.svg
+index.html
+services.html
+about.html
+insights.html
+contact.html
+404.html
+CNAME
+robots.txt
+sitemap.xml
+assets/
+  css/styles.css
+  js/config.js
+  js/data.js
+  js/main.js
+  img/logo.svg
+  img/favicon.svg
+  img/og-image.svg
 ```
 
-## 直接上线步骤
+## Quick edits
 
-1. 解压本文件包。
-2. 把所有文件上传到你的 GitHub 仓库根目录。
-3. GitHub 仓库进入：`Settings → Pages`。
-4. Source 选择：`Deploy from a branch`。
-5. Branch 选择：`main`，Folder 选择：`/ root`。
-6. 保存。
-7. 如果你使用 `kairesa.com`，保留 `CNAME` 文件。
-8. 如果你不用 `kairesa.com`，删除或修改 `CNAME` 文件。
+### Company info
 
-## 修改公司信息
-
-打开：
+Edit:
 
 ```text
 assets/js/config.js
 ```
 
-修改：
+You can change:
 
-```js
-name: "Kairesa",
-domain: "https://kairesa.com",
-email: "hello@kairesa.com",
-formEndpoint: ""
-```
+- company name
+- domain
+- email
+- navigation
+- Formspree endpoint
 
-## 添加服务内容
+### Website content
 
-打开：
-
-```text
-assets/js/data.js
-```
-
-在 `services` 数组里添加新项目即可。
-
-## 添加 Insights / Blog 内容
-
-打开：
+Edit:
 
 ```text
 assets/js/data.js
 ```
 
-在 `insights` 数组里添加新项目即可。
+You can add or remove:
 
-## 邮件功能说明
+- services
+- packages
+- homepage metrics
+- operating lens rows
+- modules
+- use cases
+- values
+- proof points
+- insights
+- FAQs
 
-这个网站是静态网站，没有服务器。默认的联系表单会打开用户本地邮箱，并自动生成一封邮件发给：
+This keeps the website modular. You can add new content without editing every HTML page.
 
-```text
-hello@kairesa.com
-```
+## Email form
 
-如果你想让表单在网页内直接提交，可以使用 Formspree 免费版：
+By default, the contact form opens a pre-filled email to `hello@kairesa.com`.
 
-1. 注册 Formspree。
-2. 创建表单。
-3. 复制 endpoint，例如：`https://formspree.io/f/xxxxxxx`。
-4. 打开 `assets/js/config.js`。
-5. 填入：
+To let the form submit directly from the webpage:
+
+1. Create a free Formspree form.
+2. Copy the endpoint URL.
+3. Paste it in `assets/js/config.js`:
 
 ```js
-formEndpoint: "https://formspree.io/f/xxxxxxx"
+formEndpoint: "https://formspree.io/f/your-id"
 ```
 
-保存上传后，联系表单就会优先用 Formspree 发送。如果 Formspree 失败，会自动回退到 mailto 邮件。
+## GitHub Pages
 
-## 互动功能
+In GitHub:
 
-网站已经包含：
+```text
+Settings → Pages → Deploy from a branch → main → / root → Save
+```
 
-- 手机菜单
-- 深色/浅色模式切换
-- 页面分享按钮
-- 邮件转发按钮
-- 一键复制邮箱
-- 服务搜索
-- Insights 搜索
-- 可展开服务卡片
-- 可展开 FAQ
-- Project brief builder，自动生成邮件内容
+The `CNAME` file is already set to:
 
-## 不暴露个人名字
+```text
+kairesa.com
+```
 
-网站内没有使用 ZXSK 或个人名字。
+If you use a different domain, update both `CNAME` and `assets/js/config.js`.
 
-## 专业边界
+## Notes
 
-网站页脚和 About 页面已经写明：Kairesa 提供 strategy、operational、research、compliance support，不提供 legal representation。
+- This is a static website; it has no backend and no database.
+- There are no passwords or private keys in the files.
+- The wording avoids presenting Kairesa as a law firm or legal representative.
+- The updated CSS uses responsive grids and safer typography to reduce text overlap or misalignment on iPad and phone screens.

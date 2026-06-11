@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-page="contact">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#111111" />
@@ -43,22 +42,34 @@
           <label>Company / project
             <input type="text" name="company" placeholder="Company or project name" />
           </label>
-          <label>What do you need help with?
-            <select name="topic" required>
-              <option value="">Select one</option>
-              <option>Operational Strategy</option>
-              <option>Compliance Support</option>
-              <option>Process Optimization</option>
-              <option>Research & Analysis</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
+          <div class="form-row two">
+            <label>What do you need help with?
+              <select name="topic" required>
+                <option value="">Select one</option>
+                <option>Operational Strategy</option>
+                <option>Compliance Support</option>
+                <option>Process Optimization</option>
+                <option>Documentation Systems</option>
+                <option>Research & Analysis</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>Preferred next step
+              <select name="nextStep">
+                <option>Intro email</option>
+                <option>Brief call</option>
+                <option>Send documents first</option>
+                <option>Need a quote</option>
+              </select>
+            </label>
+          </div>
           <label>Message
             <textarea name="message" rows="8" placeholder="Describe the problem, timeline, constraints, and what a good outcome would look like." required></textarea>
           </label>
           <div class="form-actions">
             <button class="button primary" type="submit">Send message</button>
             <button class="button ghost" type="button" data-copy-email>Copy email</button>
+            <button class="button ghost" type="button" data-share-page>Share site</button>
           </div>
           <p class="form-note" id="form-note">No information is stored on this website. If no form endpoint is configured, your email app will open with a prepared message.</p>
         </form>
@@ -67,7 +78,6 @@
           <h2>Direct email</h2>
           <p><a href="mailto:hello@kairesa.com">hello@kairesa.com</a></p>
           <div class="mini-actions">
-            <button class="button small ghost" data-share-page>Share site</button>
             <button class="button small ghost" data-forward-email>Forward intro</button>
           </div>
           <hr />
@@ -77,6 +87,14 @@
             <li>What decision needs to be made?</li>
             <li>What deadline or budget matters?</li>
             <li>What would a useful deliverable look like?</li>
+          </ul>
+          <hr />
+          <h3>Common attachments</h3>
+          <ul class="check-list">
+            <li>Existing SOPs or notes</li>
+            <li>Vendor quotes or policies</li>
+            <li>Process screenshots</li>
+            <li>Draft requirements or timelines</li>
           </ul>
         </aside>
       </div>
