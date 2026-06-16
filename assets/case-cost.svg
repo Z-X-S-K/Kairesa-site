@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" role="img" aria-labelledby="t d">
+<title id="t">Cost optimization model</title><desc id="d">Abstract cost stack and scenario comparison for packaging, fulfillment and shipping.</desc>
+<rect width="1280" height="800" fill="#f5f5f3"/>
+<g font-family="Inter,Arial,sans-serif">
+<text x="88" y="92" fill="#16181d" font-size="24" letter-spacing="5">COST STACK MODEL</text>
+<text x="88" y="132" fill="#697180" font-size="20">Separate fixed, variable and dimensional costs before choosing a vendor.</text>
+<g transform="translate(88 198)">
+<rect width="720" height="480" rx="28" fill="#fff" stroke="#d9dde4"/>
+<text x="36" y="52" fill="#262a31" font-size="18" letter-spacing="3">ORDER ECONOMICS</text>
+<g transform="translate(36 92)">
+<g><text y="22" fill="#5b6371" font-size="18">Packaging</text><rect x="180" width="118" height="34" rx="9" fill="#cad1df"/></g>
+<g transform="translate(0 72)"><text y="22" fill="#5b6371" font-size="18">Pick & pack</text><rect x="180" width="72" height="34" rx="9" fill="#aeb8ca"/></g>
+<g transform="translate(0 144)"><text y="22" fill="#5b6371" font-size="18">Storage</text><rect x="180" width="48" height="34" rx="9" fill="#919db2"/></g>
+<g transform="translate(0 216)"><text y="22" fill="#5b6371" font-size="18">Shipping</text><rect x="180" width="360" height="34" rx="9" fill="#111317"/></g>
+<g transform="translate(0 288)"><text y="22" fill="#5b6371" font-size="18">DIM exposure</text><rect x="180" width="235" height="34" rx="9" fill="#5f76ff"/></g>
+</g>
+<path d="M36 424H684" stroke="#e2e5ea"/>
+<text x="36" y="458" fill="#6d7583" font-size="17">Model outputs</text>
+<g transform="translate(188 436)"><rect width="145" height="34" rx="17" fill="#f0f2f6"/><text x="22" y="22" fill="#353a43" font-size="15">cost / order</text></g>
+<g transform="translate(344 436)"><rect width="145" height="34" rx="17" fill="#f0f2f6"/><text x="22" y="22" fill="#353a43" font-size="15">margin range</text></g>
+<g transform="translate(500 436)"><rect width="145" height="34" rx="17" fill="#eef1ff"/><text x="22" y="22" fill="#3044c2" font-size="15">best scenario</text></g>
+</g>
+<g transform="translate(848 198)">
+<rect width="344" height="220" rx="28" fill="#111317"/>
+<text x="28" y="46" fill="#fff" font-size="18" letter-spacing="3">SCENARIO A</text>
+<text x="28" y="104" fill="#aeb6c4" font-size="17">Central warehouse</text>
+<text x="28" y="154" fill="#fff" font-size="42">−18%</text>
+<text x="146" y="154" fill="#7f8a9a" font-size="17">estimated cost</text>
+<path d="M28 182H316" stroke="#313640"/>
+<path d="M28 194H238" stroke="#5f76ff" stroke-width="8" stroke-linecap="round"/>
+</g>
+<g transform="translate(848 444)">
+<rect width="344" height="234" rx="28" fill="#fff" stroke="#d9dde4"/>
+<text x="28" y="46" fill="#262a31" font-size="18" letter-spacing="3">DECISION FILTER</text>
+<g fill="#5f6775" font-size="17"><text x="28" y="92">Transit time</text><text x="28" y="130">Cold-chain risk</text><text x="28" y="168">Inventory cost</text><text x="28" y="206">Platform integration</text></g>
+<g fill="#111317"><circle cx="298" cy="86" r="7"/><circle cx="298" cy="124" r="7"/><circle cx="298" cy="162" r="7"/><circle cx="298" cy="200" r="7"/></g>
+</g>
+</g>
+</svg>

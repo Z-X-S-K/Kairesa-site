@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" role="img" aria-labelledby="t d">
+<title id="t">Regulatory data architecture</title><desc id="d">Abstract relational database diagram for jurisdictions, authorities, programs, requirements and source documents.</desc>
+<rect width="1280" height="800" fill="#f3f4f6"/>
+<g stroke="#c7ccd6" stroke-width="2" fill="none">
+<path d="M245 222H480M610 222H840M610 402H840M245 582H480M610 582H840"/>
+<path d="M545 280V343M545 461V520"/>
+</g>
+<g font-family="Inter,Arial,sans-serif">
+<g transform="translate(110 142)"><rect width="270" height="160" rx="22" fill="#111317"/><text x="28" y="42" fill="#fff" font-size="18" letter-spacing="3">JURISDICTIONS</text><text x="28" y="82" fill="#aeb6c4" font-size="24">Country · State · City</text><path d="M28 116H238" stroke="#313640"/><circle cx="42" cy="136" r="6" fill="#5f76ff"/><circle cx="68" cy="136" r="6" fill="#7f8dff"/><circle cx="94" cy="136" r="6" fill="#b0b8ff"/></g>
+<g transform="translate(475 142)"><rect width="270" height="160" rx="22" fill="#fff" stroke="#d7dbe3"/><text x="28" y="42" fill="#22252b" font-size="18" letter-spacing="3">PROGRAMS</text><text x="28" y="82" fill="#596170" font-size="24">TNC · DOT · NEMT</text><path d="M28 116H238" stroke="#e4e6eb"/><rect x="28" y="128" width="70" height="10" rx="5" fill="#5f76ff"/><rect x="106" y="128" width="52" height="10" rx="5" fill="#bfc6d4"/><rect x="166" y="128" width="72" height="10" rx="5" fill="#d9dde5"/></g>
+<g transform="translate(840 142)"><rect width="330" height="160" rx="22" fill="#fff" stroke="#d7dbe3"/><text x="28" y="42" fill="#22252b" font-size="18" letter-spacing="3">AUTHORITIES</text><text x="28" y="82" fill="#596170" font-size="24">Agency · Regulator</text><path d="M28 116H300" stroke="#e4e6eb"/><path d="M28 134H250M28 148H208" stroke="#bcc3cf" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(475 322)"><rect width="330" height="160" rx="22" fill="#eef1ff" stroke="#8798ff"/><text x="28" y="42" fill="#2438a7" font-size="18" letter-spacing="3">REQUIREMENTS</text><text x="28" y="82" fill="#313d7c" font-size="24">Frequency · Trigger · Mode</text><path d="M28 116H300" stroke="#c5ccff"/><path d="M28 136H210M230 136H300" stroke="#6578ff" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(110 502)"><rect width="270" height="160" rx="22" fill="#fff" stroke="#d7dbe3"/><text x="28" y="42" fill="#22252b" font-size="18" letter-spacing="3">ARTIFACTS</text><text x="28" y="82" fill="#596170" font-size="24">Forms · Records</text><path d="M28 116H238" stroke="#e4e6eb"/><path d="M28 136H190" stroke="#aeb6c4" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(475 502)"><rect width="270" height="160" rx="22" fill="#fff" stroke="#d7dbe3"/><text x="28" y="42" fill="#22252b" font-size="18" letter-spacing="3">ELIGIBILITY</text><text x="28" y="82" fill="#596170" font-size="24">License · Provider</text><path d="M28 116H238" stroke="#e4e6eb"/><circle cx="46" cy="138" r="12" fill="#111317"/><path d="M76 138H220" stroke="#aeb6c4" stroke-width="8" stroke-linecap="round"/></g>
+<g transform="translate(840 502)"><rect width="330" height="160" rx="22" fill="#111317"/><text x="28" y="42" fill="#fff" font-size="18" letter-spacing="3">SOURCE TRAIL</text><text x="28" y="82" fill="#aeb6c4" font-size="24">Citation for every rule</text><path d="M28 116H300" stroke="#313640"/><path d="M28 136H270" stroke="#5f76ff" stroke-width="8" stroke-linecap="round"/></g>
+</g>
+</svg>
