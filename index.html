@@ -1,271 +1,81 @@
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Kairesa — Compliance. Intelligence. Impact.</title>
-  <meta name="description" content="Kairesa designs compliance, operational, cost, and digital systems for organizations working through complex requirements.">
-  <meta name="theme-color" content="#f5f5f3">
-  <meta property="og:title" content="Kairesa — Compliance. Intelligence. Impact.">
-  <meta property="og:description" content="Structured systems for complex work.">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111216">
+  <title>Kairesa — We Systematize Complexity</title>
+  <meta name="description" content="Kairesa designs practical systems across compliance, operations, cost intelligence, legal operations, research, and digital tools.">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/app-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kairesa.com/">
-  <link rel="icon" href="favicon.ico">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <meta property="og:title" content="Kairesa — We Systematize Complexity">
+  <meta property="og:description" content="Kairesa designs practical systems across compliance, operations, cost intelligence, legal operations, research, and digital tools.">
+  <meta property="og:image" content="https://kairesa.com/assets/img/og-card.svg">
+  
 </head>
-<body>
+<body data-page="home">
 <a class="skip-link" href="#main">Skip to content</a>
-
-<header class="site-header" id="top">
-  <a class="brand" href="#top" aria-label="Kairesa home">
-    <picture>
-      <source srcset="assets/kairesa-primary-white.svg" media="(prefers-color-scheme: dark)">
-      <img class="brand-logo brand-logo-light" src="assets/kairesa-primary.svg" alt="Kairesa">
-    </picture>
-  </a>
-
-  <nav class="desktop-nav" aria-label="Primary navigation">
-    <a href="#capabilities">Capabilities</a>
-    <a href="#work">Selected work</a>
-    <a href="#approach">Approach</a>
-    <a href="#about">About</a>
-  </nav>
-
-  <div class="header-actions">
-    <a class="header-contact" href="#contact">Start a project</a>
-    <button class="theme-toggle" type="button" aria-label="Switch color theme" aria-pressed="false">
-      <span class="theme-icon" aria-hidden="true"></span>
-    </button>
-    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav">
-      <span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation" hidden>
-  <a href="#capabilities">Capabilities</a>
-  <a href="#work">Selected work</a>
-  <a href="#approach">Approach</a>
-  <a href="#about">About</a>
-  <a href="#contact">Start a project</a>
-</nav>
+<div id="site-header"></div>
 
 <main id="main">
-  <section class="hero" aria-labelledby="heroTitle">
-    <div class="hero-copy-block">
-      <div class="eyebrow"><span></span> Advisory, systems & practical technology</div>
-      <h1 id="heroTitle">Complex work,<br><em>made usable.</em></h1>
-      <p>Kairesa turns scattered requirements, operating constraints, and business decisions into clear systems people can actually use.</p>
-      <div class="hero-actions">
-        <a class="button button-primary" href="#work">Explore selected work</a>
-        <a class="button button-secondary" href="#contact">Discuss a project</a>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow">A · 001 / Multidisciplinary solutions</p>
+        <h1 class="display">We systematize<br>complexity.</h1>
+        <p class="body-lg">Kairesa transforms fragmented requirements, inefficient workflows, opaque costs, and disconnected tools into practical systems that people and organizations can actually use.</p>
+        <div class="hero-actions"><a class="button button--solid" href="capabilities.html">Explore capabilities ↗</a><a class="button button--soft" href="work.html">View selected work</a></div>
       </div>
-      <div class="hero-note">
-        <span>Compliance</span><i></i><span>Operations</span><i></i><span>Cost</span><i></i><span>Digital systems</span>
-      </div>
-    </div>
-
-    <div class="system-stage" id="systemStage" aria-label="Interactive representation of Kairesa's working method">
-      <div class="stage-orbit orbit-one"></div>
-      <div class="stage-orbit orbit-two"></div>
-      <button class="stage-node node-research is-active" type="button" data-stage="0">
-        <small>01</small><strong>Research</strong><span>Evidence and constraints</span>
-      </button>
-      <button class="stage-node node-structure" type="button" data-stage="1">
-        <small>02</small><strong>Structure</strong><span>Rules, flows and ownership</span>
-      </button>
-      <button class="stage-node node-build" type="button" data-stage="2">
-        <small>03</small><strong>Build</strong><span>Documents, tools and workflows</span>
-      </button>
-      <button class="stage-node node-measure" type="button" data-stage="3">
-        <small>04</small><strong>Measure</strong><span>Risk, time, cost and usability</span>
-      </button>
-      <div class="stage-center">
-        <img src="assets/kairesa-symbol.svg" alt="" aria-hidden="true">
-        <span id="stageCenterLabel">Traceable inputs</span>
-      </div>
-      <div class="stage-line line-a"></div>
-      <div class="stage-line line-b"></div>
-      <div class="stage-line line-c"></div>
-      <div class="stage-line line-d"></div>
+      <aside class="hero-aside" data-reveal>
+        <div class="hero-stat"><strong>03</strong><p>Primary capabilities: Compliance, Operations, and Digital Systems.</p></div>
+        <div class="hero-stat"><strong>06</strong><p>Connected disciplines operating as one system.</p></div>
+        <div class="hero-stat"><strong>04</strong><p>Stages from research through implementation.</p></div>
+      </aside>
     </div>
   </section>
 
-  <section class="signal-strip" aria-label="Kairesa business scope">
-    <div>Regulatory research</div><div>Governance design</div><div>Operational SOP</div><div>Cost modeling</div><div>Digital products</div><div>Workflow automation</div>
+  <section class="section section--tight">
+    <div class="shell system-core" data-system-core data-reveal>
+      <svg viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
+        <path data-system-path="Rules" d="M120 90 C360 90 400 250 520 300"/><path data-system-path="Processes" d="M110 310 C300 310 410 310 520 310"/><path data-system-path="Costs" d="M150 540 C330 500 410 380 520 320"/>
+        <path data-system-path="Structure" d="M680 300 C800 250 850 90 1080 90"/><path data-system-path="Workflow" d="M680 310 C790 310 900 310 1090 310"/><path data-system-path="Scale" d="M680 320 C800 390 900 510 1050 540"/>
+      </svg>
+      <button class="io-node" data-system-node="Rules" data-pos="i1">Rules</button><button class="io-node" data-system-node="Processes" data-pos="i2">Processes</button><button class="io-node" data-system-node="Costs" data-pos="i3">Costs</button>
+      <div class="core-node"><span class="brand-mark" aria-hidden="true"></span><span>Kairesa system core</span></div>
+      <button class="io-node" data-system-node="Structure" data-pos="o1">Structure</button><button class="io-node" data-system-node="Workflow" data-pos="o2">Workflow</button><button class="io-node" data-system-node="Scale" data-pos="o3">Control & scale</button>
+      <p class="core-caption">Documents · Data · Ownership · Controls · Tools</p>
+    </div>
   </section>
 
-  <section class="section capabilities" id="capabilities" aria-labelledby="capabilitiesTitle">
-    <div class="section-intro">
-      <div class="section-kicker">01 / Capabilities</div>
-      <h2 id="capabilitiesTitle">One company.<br>Several ways to solve the problem.</h2>
-      <p>Choose a capability to see the type of work, outputs, and problems it covers. Projects can use one module or combine several.</p>
-    </div>
+  <section class="section section--border">
+    <div class="shell"><div class="section-head" data-reveal><div><p class="kicker">01 · Capability system</p><h2 class="section-title">A single system, six disciplines.</h2></div><p class="body-lg">Hover, focus, or tap a node to see what it solves, what Kairesa builds, the professional frameworks involved, and how it connects to the rest of the system.</p></div><div data-home-network></div></div>
+  </section>
 
-    <div class="capability-shell">
-      <div class="capability-tabs" role="tablist" aria-label="Capabilities">
-        <button role="tab" aria-selected="true" aria-controls="capPanel" id="capTab0" data-capability="0">Compliance</button>
-        <button role="tab" aria-selected="false" aria-controls="capPanel" id="capTab1" data-capability="1">Operations</button>
-        <button role="tab" aria-selected="false" aria-controls="capPanel" id="capTab2" data-capability="2">Cost & supply</button>
-        <button role="tab" aria-selected="false" aria-controls="capPanel" id="capTab3" data-capability="3">Digital systems</button>
-        <button role="tab" aria-selected="false" aria-controls="capPanel" id="capTab4" data-capability="4">Documentation</button>
-      </div>
-      <div class="capability-panel" id="capPanel" role="tabpanel" aria-labelledby="capTab0" tabindex="0">
-        <div>
-          <span class="cap-number" id="capNumber">01</span>
-          <h3 id="capTitle">Compliance & regulatory intelligence</h3>
-          <p id="capDescription">Translate fragmented rules into a source-traceable structure that supports consistent decisions and execution.</p>
-        </div>
-        <div class="cap-output-block">
-          <span>Typical outputs</span>
-          <ul id="capOutputs">
-            <li>Jurisdiction and requirement maps</li>
-            <li>Source-linked regulatory databases</li>
-            <li>Governance and control blueprints</li>
-          </ul>
-        </div>
-        <div class="cap-fit-block">
-          <span>Useful when</span>
-          <p id="capFit">The team has rules, stakeholders, or documents—but no reliable system connecting them.</p>
-        </div>
+  <section class="section section--border">
+    <div class="shell"><div class="section-head" data-reveal><div><p class="kicker">02 · Selected work</p><h2 class="section-title">Systems, not slide decks.</h2></div><p class="body-lg">Each case is presented through an original abstraction of the problem, operating logic, system built, and outcome. No client files or confidential materials are exposed.</p></div><div class="project-grid" data-home-projects></div><div style="margin-top:34px"><a class="button button--soft" href="work.html">Explore all work ↗</a></div></div>
+  </section>
+
+  <section class="section section--border">
+    <div class="shell"><div class="section-head" data-reveal><div><p class="kicker">03 · System transformation</p><h2 class="section-title">Before and after the operating model.</h2></div><p class="body-lg">Drag the divider. The value of a system is not more documentation; it is a change in how decisions, ownership, information, and exceptions are handled.</p></div>
+      <div class="compare" data-compare data-reveal>
+        <div class="compare-layer compare-before"><div><p class="kicker">System state · unstructured</p><div class="compare-label">Before</div></div><div class="compare-list"><div class="compare-item"><span>01</span>Fragmented information</div><div class="compare-item"><span>02</span>Repeated decisions</div><div class="compare-item"><span>03</span>Unclear ownership</div><div class="compare-item"><span>04</span>Hidden cost logic</div><div class="compare-item"><span>05</span>Disconnected tools</div></div></div>
+        <div class="compare-layer compare-after"><div><p class="kicker">System state · structured</p><div class="compare-label">After</div></div><div class="compare-list"><div class="compare-item"><span>01</span>Defined source hierarchy</div><div class="compare-item"><span>02</span>Repeatable workflows</div><div class="compare-item"><span>03</span>Visible ownership and controls</div><div class="compare-item"><span>04</span>Transparent cost drivers</div><div class="compare-item"><span>05</span>Scalable tools</div></div></div>
+        <div class="compare-handle"></div><input type="range" min="10" max="90" value="50" aria-label="Compare before and after system states">
       </div>
     </div>
   </section>
 
-  <section class="section work-section" id="work" aria-labelledby="workTitle">
-    <div class="work-header">
-      <div>
-        <div class="section-kicker">02 / Selected work</div>
-        <h2 id="workTitle">A range of systems,<br>not a wall of text.</h2>
-      </div>
-      <p>Representative work is shown at a high level. Client-identifying and sensitive details are intentionally omitted.</p>
-    </div>
+  <section class="section section--border"><div class="shell"><div class="section-head" data-reveal><div><p class="kicker">04 · Methodology</p><h2 class="section-title">A working model, not a presentation.</h2></div><p class="body-lg">Each stage has defined inputs, questions, outputs, risks, and a handoff condition. Select a stage to inspect the logic.</p></div><div data-home-method></div></div></section>
 
-    <div class="case-toolbar">
-      <div class="case-filters" role="group" aria-label="Filter selected work">
-        <button class="is-active" type="button" data-filter="all">All</button>
-        <button type="button" data-filter="compliance">Compliance</button>
-        <button type="button" data-filter="operations">Operations</button>
-        <button type="button" data-filter="digital">Digital</button>
-        <button type="button" data-filter="cost">Cost</button>
-      </div>
-      <div class="case-controls">
-        <button class="icon-button" id="casePrev" type="button" aria-label="Previous case page">←</button>
-        <span id="casePageLabel" aria-live="polite">1 / 2</span>
-        <button class="icon-button" id="caseNext" type="button" aria-label="Next case page">→</button>
-      </div>
-    </div>
+  <section class="section section--border"><div class="shell"><div class="section-head" data-reveal><div><p class="kicker">05 · Why Kairesa</p><h2 class="section-title">Built for real constraints.</h2></div><p class="body-lg">Small teams, incomplete information, limited budgets, and changing requirements are not edge cases. They are the design environment.</p></div><div class="accordion">
+    <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Cross-disciplinary by design</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">Compliance affects operations; operations affect cost; cost affects contracts and the business model; technology can improve all of them. Kairesa designs the seams rather than treating each discipline as an isolated assignment.</p></div></div></article>
+    <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>From recommendation to finished system</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">Outputs may include obligations registers, AML/KYC workflow maps, SOP libraries, RACI matrices, cost models, dashboards, websites, automation, training modules, and implementation roadmaps.</p></div></div></article>
+    <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Designed for handoff</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">A system is not complete until ownership, update logic, exceptions, maintenance, and future expansion are clear to the people who will use it.</p></div></div></article>
+    <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Modular and scalable</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">The first phase is designed to be useful at the client’s current size while preserving a path toward standardized processes, richer data, and future software.</p></div></div></article>
+  </div></div></section>
 
-    <div class="case-viewport" id="caseViewport">
-      <div class="case-grid" id="caseGrid" aria-live="polite"></div>
-    </div>
-    <div class="case-pagination" id="casePagination" aria-label="Case pages"></div>
-  </section>
-
-  <section class="section approach" id="approach" aria-labelledby="approachTitle">
-    <div class="section-intro approach-intro">
-      <div class="section-kicker">03 / Approach</div>
-      <h2 id="approachTitle">The work moves in stages.<br>The client sees the system forming.</h2>
-    </div>
-
-    <div class="approach-layout">
-      <div class="approach-steps" role="tablist" aria-label="Kairesa project stages">
-        <button role="tab" aria-selected="true" data-step="0"><span>01</span><strong>Diagnose</strong><small>Define the actual constraint.</small></button>
-        <button role="tab" aria-selected="false" data-step="1"><span>02</span><strong>Map</strong><small>Connect evidence, people, and decisions.</small></button>
-        <button role="tab" aria-selected="false" data-step="2"><span>03</span><strong>Build</strong><small>Create the working artifact.</small></button>
-        <button role="tab" aria-selected="false" data-step="3"><span>04</span><strong>Validate</strong><small>Test usability and risk.</small></button>
-      </div>
-      <div class="approach-panel" id="approachPanel" role="tabpanel" tabindex="0">
-        <div class="approach-visual" aria-hidden="true">
-          <div class="visual-axis"></div>
-          <div class="visual-point p1 is-active"></div><div class="visual-point p2"></div><div class="visual-point p3"></div><div class="visual-point p4"></div>
-          <div class="visual-card"><span id="approachVisualLabel">Inputs</span><strong id="approachVisualValue">Evidence, constraints, stakeholders</strong></div>
-        </div>
-        <div class="approach-copy">
-          <span id="approachNumber">Stage 01</span>
-          <h3 id="approachHeading">Diagnose before designing.</h3>
-          <p id="approachText">We clarify what is actually failing, what standard the result must meet, and which constraints cannot be ignored.</p>
-          <div class="approach-deliverable"><small>Working output</small><strong id="approachOutput">Problem definition and evidence map</strong></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section about" id="about" aria-labelledby="aboutTitle">
-    <div class="about-brand">
-      <img src="assets/kairesa-symbol.svg" alt="Kairesa symbol">
-      <span>Compliance.<br>Intelligence.<br>Impact.</span>
-    </div>
-    <div class="about-copy">
-      <div class="section-kicker">04 / About</div>
-      <h2 id="aboutTitle">Built for the space between advice and execution.</h2>
-      <p>Kairesa is an independent advisory and systems company based in Los Angeles. Our work combines compliance research, operational design, cost analysis, documentation, and practical technology.</p>
-      <p>The goal is not to add another presentation layer. It is to leave behind a clearer decision structure, a usable workflow, or a tool that continues working after the project ends.</p>
-      <div class="about-facts"><span>Founded from project work begun in 2024</span><span>English & Mandarin</span><span>Cross-border context</span></div>
-    </div>
-  </section>
-
-  <section class="contact" id="contact" aria-labelledby="contactTitle">
-    <div class="contact-copy">
-      <div class="section-kicker">05 / Contact</div>
-      <h2 id="contactTitle">Start with the problem,<br>not a service label.</h2>
-      <p>Describe what is unclear, risky, expensive, or difficult to operate. We will identify the most practical next step.</p>
-      <a href="mailto:hello@kairesa.com">hello@kairesa.com</a>
-    </div>
-
-    <form class="contact-form" id="contactForm">
-      <div class="form-grid">
-        <label><span>Name</span><input name="name" autocomplete="name" required></label>
-        <label><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
-        <label class="full"><span>Organization</span><input name="organization" autocomplete="organization"></label>
-        <fieldset class="full">
-          <legend>What kind of problem is this?</legend>
-          <div class="project-options">
-            <label><input type="radio" name="project" value="Compliance / research" checked><span>Compliance</span></label>
-            <label><input type="radio" name="project" value="Operations / SOP"><span>Operations</span></label>
-            <label><input type="radio" name="project" value="Cost / supply"><span>Cost</span></label>
-            <label><input type="radio" name="project" value="Website / digital system"><span>Digital</span></label>
-            <label><input type="radio" name="project" value="Not sure yet"><span>Not sure</span></label>
-          </div>
-        </fieldset>
-        <label class="full"><span>Project summary</span><textarea name="message" rows="5" placeholder="A few sentences are enough." required></textarea></label>
-      </div>
-      <div class="form-actions">
-        <button class="button button-inverse" type="submit">Prepare email</button>
-        <button class="copy-email" type="button" id="copyEmail">Copy email address</button>
-      </div>
-      <p class="form-status" id="formStatus" role="status"></p>
-    </form>
-  </section>
+  <section class="cta"><div class="shell"><div class="cta-panel" data-reveal><div><p class="kicker">G · 007 / Start a project</p><h2>Bring us the complex part.</h2><p>We will help define it, structure it, build it, and put it into use.</p></div><div><a class="button button--solid" href="contact.html">Start a project ↗</a> <button class="button" type="button" data-share>Share Kairesa</button></div></div></div></section>
 </main>
-
-<footer class="site-footer">
-  <a href="#top" class="footer-brand"><img src="assets/kairesa-primary-white.svg" alt="Kairesa"></a>
-  <div><span>Compliance. Intelligence. Impact.</span><small>© <span id="year"></span> Kairesa. All rights reserved.</small></div>
-  <div class="footer-links"><a href="mailto:hello@kairesa.com">Email</a><a href="legal.html">Legal</a><a href="#top">Back to top ↑</a></div>
-</footer>
-
-<div class="case-modal" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
-  <div class="modal-backdrop" data-modal-close></div>
-  <div class="modal-card">
-    <button class="modal-close" type="button" aria-label="Close case details" data-modal-close>×</button>
-    <div class="modal-image"><img id="modalImage" src="" alt=""></div>
-    <div class="modal-content">
-      <div class="modal-meta" id="modalMeta"></div>
-      <h2 id="modalTitle"></h2>
-      <p id="modalSummary"></p>
-      <div class="modal-grid">
-        <div><small>Scope</small><p id="modalScope"></p></div>
-        <div><small>System created</small><p id="modalOutput"></p></div>
-      </div>
-      <p class="modal-note">Representative project. Client-identifying and sensitive details are omitted.</p>
-    </div>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+<div id="site-footer"></div><script src="assets/js/site.js"></script></body></html>
