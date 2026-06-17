@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kairesa.com/sitemap.xml
