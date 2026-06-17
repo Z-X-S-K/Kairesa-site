@@ -1,0 +1,9 @@
+/* Capabilities page module */
+.capability-detail-grid--concise .info-card{grid-column:span 6}
+.capability-detail-grid--concise .info-card--wide{grid-column:span 6}
+.capability-detail-grid--concise ul{margin-bottom:0}
+body[data-page="capabilities"] .network-panel{padding:30px}
+body[data-page="capabilities"] .network-panel h3{font-size:48px}
+@media(max-width:720px){
+  .capability-detail-grid--concise .info-card,.capability-detail-grid--concise .info-card--wide{grid-column:1}
+}

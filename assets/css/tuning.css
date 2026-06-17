@@ -1,0 +1,104 @@
+/* Kairesa v1.620 — global tuning layer.
+   Shared fixes live here. Page-specific adjustments live beside each page. */
+
+:root{
+  --ui-header-logo-size:38px;
+  --ui-header-logo-x:0px;
+  --ui-header-logo-y:0px;
+  --ui-header-logo-gap:13px;
+}
+
+#site-header .brand{gap:var(--ui-header-logo-gap)}
+#site-header .brand-mark{
+  width:var(--ui-header-logo-size);
+  height:var(--ui-header-logo-size);
+  transform:translate(var(--ui-header-logo-x),var(--ui-header-logo-y));
+}
+
+/* Long right-column copy must not push the left heading to the bottom. */
+.section-head{align-items:start}
+
+/* Prevent the network diagram from stretching to the height of its text panel. */
+.network-layout{align-items:start}
+.discipline-network{height:560px;min-height:560px}
+.network-panel{align-self:start;min-height:560px}
+.network-fields{gap:0}
+.network-field{padding:16px 0}
+.network-field dd{line-height:1.45}
+.network-panel .term-cloud{margin-top:18px}
+
+/* Smoother before/after implementation: the reveal uses an overflow mask,
+   not a large clip-path repainted on every touch event. */
+.compare{--split:50%;--after-width:50%;--compare-width:1000px;contain:layout paint}
+.compare-after-wrap{
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  width:var(--after-width);
+  overflow:hidden;
+  contain:paint;
+  will-change:width;
+  background:var(--ink);
+}
+.compare-after-wrap .compare-after{
+  position:absolute;
+  inset:0 0 0 auto;
+  width:var(--compare-width);
+  height:100%;
+  clip-path:none;
+}
+.compare input{
+  inset:calc(50% - 44px) 0 auto 0;
+  height:88px;
+  touch-action:pan-y;
+  -webkit-tap-highlight-color:transparent;
+}
+.compare-handle{will-change:left}
+
+/* Case pages generated after initial load are visible and compact. */
+.case-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:21px;
+}
+.case-summary-grid article{
+  border:1px solid var(--line);
+  border-radius:var(--r2);
+  background:var(--surface);
+  padding:26px;
+}
+.case-summary-grid .lead{
+  font-family:var(--serif);
+  font-size:clamp(25px,2.4vw,36px);
+  line-height:1.08;
+  margin:0;
+}
+.case-summary-grid p:last-child{margin-bottom:0}
+
+/* Footer is intentionally quieter than page-level CTAs. */
+.footer-subhead{margin-top:22px!important}
+
+/* Tablet landscape should not inherit the widest desktop layout. */
+@media (max-width:1240px){
+  .desktop-nav{display:none}
+  .menu-toggle{display:grid}
+  .header-actions .button{display:none}
+  .network-layout,.case-hero-grid,.layer-explorer,.outcome-grid,.related-grid,.planner,.client-grid{
+    grid-template-columns:1fr;
+  }
+  .section{padding:72px 0}
+  .section--tight{padding:55px 0}
+  .page-hero{padding-top:72px}
+  .network-layout{gap:21px}
+  .discipline-network{height:520px;min-height:520px}
+  .network-panel{min-height:auto}
+  .case-summary-grid{grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:720px){
+  #site-header .brand-mark{width:34px;height:34px;transform:none}
+  #site-header .brand{gap:10px}
+  .discipline-network{height:500px;min-height:500px}
+  .case-summary-grid{grid-template-columns:1fr}
+}

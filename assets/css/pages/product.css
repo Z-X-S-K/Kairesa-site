@@ -1,0 +1,21 @@
+.product-page{min-height:100vh}
+.product-hero{padding:89px 0 55px}
+.product-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:55px;align-items:center}
+.product-badge{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.product-title{font-family:var(--serif);font-size:clamp(54px,8vw,110px);line-height:.9;letter-spacing:-.05em;font-weight:400;margin:24px 0}
+.product-lead{font-size:clamp(18px,1.7vw,24px);color:var(--muted);max-width:760px}
+.product-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:34px}
+.feed-panel{border:1px solid var(--line);border-radius:34px;background:var(--surface);padding:26px;box-shadow:var(--shadow)}
+.feed-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px}
+.live-dot{display:inline-flex;align-items:center;gap:8px;font-size:12px}.live-dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px var(--accent-soft)}
+.feed-list{display:grid;gap:10px;margin-top:18px}
+.feed-item{display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:13px;padding:16px;border:1px solid var(--line);border-radius:15px;background:var(--bg)}
+.feed-item time{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.feed-item strong{font-size:14px}.feed-item span{font-family:var(--mono);font-size:9px;color:var(--accent)}
+.product-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}
+.product-feature{border:1px solid var(--line);border-radius:28px;background:var(--surface);padding:28px}
+.product-feature h2{font-family:var(--serif);font-size:34px;line-height:1;font-weight:400;margin:18px 0}
+.product-feature p{color:var(--muted);margin-bottom:0}
+.code-path{font-family:var(--mono);font-size:12px;padding:13px 16px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);overflow:auto}
+@media(max-width:900px){.product-hero-grid,.product-feature-grid{grid-template-columns:1fr}.product-hero{padding-top:64px}}
+@media(max-width:520px){.feed-item{grid-template-columns:55px 1fr}.feed-item span{display:none}}

@@ -1,6 +1,12 @@
 (() => {
   'use strict';
 
+  // Keep canonical URLs clean even when a user opens an index.html file directly.
+  if(location.pathname.endsWith('/index.html')){
+    const cleanPath=location.pathname.slice(0,-10) || '/';
+    location.replace(cleanPath + location.search + location.hash);
+  }
+
   const SITE = {
     email: 'hello@kairesa.com',
     domain: 'https://kairesa.com/',
@@ -8,11 +14,11 @@
   };
 
   const NAV = [
-    ['capabilities.html', 'Capabilities', 'capabilities'],
-    ['work.html', 'Work', 'work'],
-    ['methodology.html', 'Methodology', 'methodology'],
-    ['about.html', 'About', 'about'],
-    ['insights.html', 'Insights', 'insights']
+    ['/capabilities/', 'Capabilities', 'capabilities'],
+    ['/work/', 'Work', 'work'],
+    ['/methodology/', 'Methodology', 'methodology'],
+    ['/about/', 'About', 'about'],
+    ['/insights/', 'Insights', 'insights']
   ];
 
   const DISCIPLINES = {
@@ -68,7 +74,7 @@
 
   const PROJECTS = [
     {
-      id: 'operational', page: 'case-operational.html', index: '01', category: 'Systems',
+      id: 'operational', page: '/case-operational/', index: '01', category: 'Systems',
       title: 'Operational System Architecture',
       summary: 'A complete operating system for a high-throughput physical service environment where quality, speed, staffing, inventory, safety, and handoffs had to function as one coordinated structure.',
       challenge: 'Daily performance depended too heavily on individual memory and improvised decisions. Roles, training, quality checks, inventory logic, and exception response were fragmented.',
@@ -77,7 +83,7 @@
       tags: ['RACI', 'Standard Work', 'Inventory Controls', 'Exception Logic'], visual: 'grid', featured: true
     },
     {
-      id: 'cost', page: 'case-cost.html', index: '02', category: 'Cost',
+      id: 'cost', page: '/case-cost/', index: '02', category: 'Cost',
       title: 'Cold-Chain Cost Intelligence',
       summary: 'A decision system that decomposed nationwide frozen-product fulfilment into controllable cost components.',
       challenge: 'A single supplier price obscured storage, pick-and-pack, packaging, refrigerant, dimensional weight, delivery speed, loss, and returns.',
@@ -86,7 +92,7 @@
       tags: ['TCO', 'Cost-to-Serve', 'DIM Weight', 'Scenario Analysis'], visual: 'bars'
     },
     {
-      id: 'learning', page: 'case-learning.html', index: '03', category: 'Digital',
+      id: 'learning', page: '/case-learning/', index: '03', category: 'Digital',
       title: 'Learning & Application Operating System',
       summary: 'A personalized digital environment that converted a complex long-term objective into milestones, daily actions, financial targets, progress records, and contingency plans.',
       challenge: 'Deadlines, study, work, finances, applications, and recovery plans existed as separate decisions rather than one operating model.',
@@ -95,7 +101,7 @@
       tags: ['Milestone Engine', 'State Model', 'Dashboard', 'Automation'], visual: 'timeline'
     },
     {
-      id: 'compliance', page: 'case-compliance.html', index: '04', category: 'Compliance',
+      id: 'compliance', page: '/case-compliance/', index: '04', category: 'Compliance',
       title: 'Market-Entry Compliance Control System',
       summary: 'A structured research and documentation system for an international organization preparing for North American operations.',
       challenge: 'Official requirements, forms, risk triggers, screening obligations, and internal ownership were distributed across sources and jurisdictions.',
@@ -104,7 +110,7 @@
       tags: ['AML / KYC / KYB', 'CDD / EDD', 'OFAC / PEP', 'Control Matrix'], visual: 'matrix', featured: true
     },
     {
-      id: 'calendar', page: 'case-calendar.html', index: '05', category: 'Digital',
+      id: 'calendar', page: '/case-calendar/', index: '05', category: 'Digital',
       title: 'Economic Calendar Automation',
       summary: 'A web-based information system that normalized high-impact economic events and delivered them into personal calendars through subscription logic.',
       challenge: 'Critical events required repeated manual checking, interpretation, and calendar entry.',
@@ -174,19 +180,19 @@
         <div class="site-progress" aria-hidden="true"></div>
         <header class="site-header" data-header>
           <div class="shell header-inner">
-            <a class="brand" href="index.html" aria-label="Kairesa home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
+            <a class="brand" href="/" aria-label="Kairesa home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
             <nav class="desktop-nav" aria-label="Primary navigation">
               ${NAV.map(([href,label,key])=>`<a href="${href}" class="${active===key?'is-active':''}">${label}</a>`).join('')}
             </nav>
             <div class="header-actions">
               <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark mode">◐</button>
-              <a class="button button--solid" href="contact.html">Start a project <span>↗</span></a>
+              <a class="button button--solid" href="/contact/">Start a project <span>↗</span></a>
               <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-panel" aria-label="Open menu">☰</button>
             </div>
           </div>
         </header>
         <div class="mobile-panel" id="mobile-panel" aria-hidden="true">
-          <nav aria-label="Mobile navigation">${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="contact.html">Start a project</a></nav>
+          <nav aria-label="Mobile navigation">${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="/contact/">Start a project</a></nav>
           <div class="mobile-meta"><span>Compliance · Operations · Digital</span><a href="mailto:${SITE.email}">${SITE.email}</a></div>
         </div>`;
     }
@@ -195,15 +201,15 @@
         <footer class="site-footer">
           <div class="shell footer-grid">
             <div class="footer-brand">
-              <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
-              <h2>Bring us the complex part.</h2>
-              <p class="muted">We will help define it, structure it, build it, and put it into use.</p>
-              <div><a class="button button--solid" href="contact.html">Start a project <span>↗</span></a></div>
+              <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
+              <h2>Systems designed to stay useful.</h2>
+              <p class="muted">Compliance, operations, cost intelligence, and practical technology—structured for implementation.</p>
+              <div><a class="text-link" href="mailto:${SITE.email}">${SITE.email} ↗</a></div>
             </div>
-            <div class="footer-col"><h3>Sitemap</h3><a href="index.html">Home</a>${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="contact.html">Contact</a></div>
-            <div class="footer-col"><h3>Disciplines</h3>${Object.values(DISCIPLINES).map(d=>`<a href="capabilities.html#${d.title.toLowerCase().replaceAll(' ','-')}">${d.title}</a>`).join('')}</div>
+            <div class="footer-col"><h3>Sitemap</h3><a href="/">Home</a>${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="/contact/">Contact</a></div>
+            <div class="footer-col"><h3>Products</h3><a href="/product/kairesa-learn/">Kairesa Learn</a><a href="/product/kairesa-calendar/">Kairesa Calendar</a><h3 class="footer-subhead">Disciplines</h3><a href="/capabilities/#compliance">Compliance</a><a href="/capabilities/#operations">Operations</a><a href="/capabilities/#digital-systems">Digital Systems</a></div>
           </div>
-          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.618 — built as a system.</span></div>
+          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.620 — modular build.</span></div>
         </footer>`;
     }
   }
@@ -255,8 +261,8 @@
 
   function networkPanel(d){
     return `<p class="kicker">${esc(d.type)}</p><h3>${esc(d.title)}</h3><p class="body-lg">${esc(d.short)}</p>
-      <dl class="network-fields"><div class="network-field"><dt>Problem</dt><dd>${esc(d.problem)}</dd></div><div class="network-field"><dt>What we build</dt><dd>${esc(d.build)}</dd></div><div class="network-field"><dt>Deliverables</dt><dd>${d.deliverables.slice(0,5).map(esc).join(' · ')}</dd></div><div class="network-field"><dt>Connects to</dt><dd>${d.connects.map(esc).join(' · ')}</dd></div></dl>
-      <div class="term-cloud">${d.terms.map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><a class="text-link" href="capabilities.html#${d.title.toLowerCase().replaceAll(' ','-')}">Open capability <span>↗</span></a>`;
+      <dl class="network-fields"><div class="network-field"><dt>Problem</dt><dd>${esc(d.problem)}</dd></div><div class="network-field"><dt>Build</dt><dd>${esc(d.build)}</dd></div><div class="network-field"><dt>Key outputs</dt><dd>${d.deliverables.slice(0,3).map(esc).join(' · ')}</dd></div></dl>
+      <div class="term-cloud">${d.terms.slice(0,6).map(x=>`<span class="chip">${esc(x)}</span>`).join('')}</div><a class="text-link" href="/capabilities/#${d.title.toLowerCase().replaceAll(' ','-')}">Open capability <span>↗</span></a>`;
   }
 
   function setupNetwork(root=document){
@@ -304,7 +310,27 @@
   }
 
   function setupCompare(){
-    $$('[data-compare]').forEach(box=>{const input=$('input',box);const update=()=>box.style.setProperty('--split',`${input.value}%`);input.addEventListener('input',update);update();});
+    $$('[data-compare]').forEach(box=>{
+      const input=$('input',box);
+      if(!input)return;
+      let frame=0;
+      const measure=()=>box.style.setProperty('--compare-width',`${box.clientWidth}px`);
+      const paint=()=>{
+        frame=0;
+        const value=Math.max(25,Math.min(75,Number(input.value)||50));
+        box.style.setProperty('--split',`${value}%`);
+        box.style.setProperty('--after-width',`${100-value}%`);
+      };
+      const update=()=>{
+        if(frame)return;
+        frame=requestAnimationFrame(paint);
+      };
+      input.addEventListener('input',update,{passive:true});
+      if('ResizeObserver' in window)new ResizeObserver(measure).observe(box);
+      else addEventListener('resize',measure,{passive:true});
+      measure();
+      paint();
+    });
   }
 
   function methodologyMarkup(){
@@ -326,25 +352,41 @@
     const mount=$('[data-capability-page]'); if(!mount)return;
     mount.innerHTML=`<aside class="capability-menu">${Object.entries(DISCIPLINES).map(([id,d],i)=>`<button type="button" data-cap-menu="${id}" class="${i===0?'is-active':''}">${d.title}</button>`).join('')}</aside><div class="capability-detail" data-cap-detail></div>`;
     const detail=$('[data-cap-detail]',mount);
-    const render=id=>{const d=DISCIPLINES[id];detail.innerHTML=`<div class="capability-detail-head"><div><p class="kicker">${d.type}</p><h2>${d.title}</h2><p class="body-lg">${d.short}</p></div><p class="body-lg">${d.build}</p></div>
-      <div class="capability-detail-grid"><article class="info-card"><h3>Core problem</h3><p>${d.problem}</p></article><article class="info-card"><h3>What Kairesa builds</h3><p>${d.build}</p></article><article class="info-card"><h3>Deliverables</h3><ul>${d.deliverables.map(x=>`<li>${x}</li>`).join('')}</ul></article><article class="info-card is-third"><h3>Professional language</h3><div class="term-cloud">${d.terms.map(x=>`<span class="chip">${x}</span>`).join('')}</div></article><article class="info-card is-third"><h3>Connected capabilities</h3><ul>${d.connects.map(x=>`<li>${x}</li>`).join('')}</ul></article><article class="info-card is-third"><h3>Typical engagement flow</h3><ol><li>Scope & source map</li><li>Gap / dependency analysis</li><li>System architecture</li><li>Build & validation</li><li>Handoff</li></ol></article></div>
-      ${id==='compliance'?`<div class="disclaimer"><strong>Professional boundary:</strong> Kairesa structures compliance research, documentation, workflows, and internal controls. It does not provide legal representation, certify regulatory compliance, conduct regulated screening, or replace licensed legal counsel or a qualified compliance officer.</div>`:''}
-      <div><a class="button button--solid" href="contact.html?discipline=${encodeURIComponent(d.title)}">Discuss a ${d.title.toLowerCase()} system ↗</a></div>`;};
-    render('compliance');$$('[data-cap-menu]',mount).forEach(btn=>btn.addEventListener('click',()=>{$$('[data-cap-menu]',mount).forEach(b=>b.classList.toggle('is-active',b===btn));render(btn.dataset.capMenu);}));
-    const hash=location.hash.slice(1);const match=Object.entries(DISCIPLINES).find(([,d])=>d.title.toLowerCase().replaceAll(' ','-')===hash);if(match){const btn=$(`[data-cap-menu="${match[0]}"]`,mount);btn?.click();}
+    const render=id=>{
+      const d=DISCIPLINES[id];
+      detail.innerHTML=`<div class="capability-detail-head"><div><p class="kicker">${d.type}</p><h2>${d.title}</h2><p class="body-lg">${d.short}</p></div><p class="body-lg">${d.build}</p></div>
+      <div class="capability-detail-grid capability-detail-grid--concise">
+        <article class="info-card"><h3>Core problem</h3><p>${d.problem}</p></article>
+        <article class="info-card"><h3>What Kairesa builds</h3><p>${d.build}</p></article>
+        <article class="info-card info-card--wide"><h3>Typical outputs</h3><ul>${d.deliverables.slice(0,5).map(x=>`<li>${x}</li>`).join('')}</ul></article>
+        <article class="info-card info-card--wide"><h3>Connected system</h3><div class="term-cloud">${[...d.connects,...d.terms.slice(0,5)].map(x=>`<span class="chip">${x}</span>`).join('')}</div></article>
+      </div>
+      ${id==='compliance'?`<div class="disclaimer"><strong>Boundary:</strong> Kairesa structures research, documentation, workflows, and internal controls. It does not provide legal representation or certify regulatory compliance.</div>`:''}
+      <div><a class="button button--solid" href="/contact/?discipline=${encodeURIComponent(d.title)}">Discuss this system ↗</a></div>`;
+    };
+    render('compliance');
+    $$('[data-cap-menu]',mount).forEach(btn=>btn.addEventListener('click',()=>{
+      $$('[data-cap-menu]',mount).forEach(b=>b.classList.toggle('is-active',b===btn));
+      render(btn.dataset.capMenu);
+    }));
+    const hash=location.hash.slice(1);
+    const match=Object.entries(DISCIPLINES).find(([,d])=>d.title.toLowerCase().replaceAll(' ','-')===hash);
+    if(match){const btn=$(`[data-cap-menu="${match[0]}"]`,mount);btn?.click();}
   }
 
   function renderCase(){
-    const root=$('[data-case-root]'); if(!root)return; const id=document.body.dataset.caseId; const p=PROJECTS.find(x=>x.id===id); if(!p)return;
+    const root=$('[data-case-root]'); if(!root)return;
+    const id=document.body.dataset.caseId;
+    const p=PROJECTS.find(x=>x.id===id); if(!p)return;
     const next=PROJECTS[(PROJECTS.indexOf(p)+1)%PROJECTS.length];
     root.innerHTML=`<section class="case-hero"><div class="shell case-hero-grid"><div data-reveal><p class="eyebrow">${p.index} · ${p.category}</p><h1 class="page-title">${p.title}</h1><p class="body-lg">${p.summary}</p><div class="case-tags">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><div class="case-visual" data-reveal>${projectVisual(p)}</div></div></section>
-      <section class="section section--border"><div class="shell case-context" data-reveal><p class="kicker">Context</p><div><p class="lead">${p.summary}</p><p class="body-lg">${p.challenge}</p></div></div></section>
+      <section class="section section--border"><div class="shell case-summary-grid" data-reveal><article><p class="kicker">Problem</p><p class="lead">${p.challenge}</p></article><article><p class="kicker">System built</p><p class="body-lg">${p.built}</p></article><article><p class="kicker">Outcome</p><p class="body-lg">${p.outcome}</p></article></div></section>
       <section class="section section--border"><div class="shell layer-explorer" data-case-explorer="${id}"><div class="layer-canvas"><div data-layer-visual></div><div class="layer-controls" data-layer-controls></div></div><div class="layer-copy" data-layer-copy></div></div></section>
-      ${id==='cost'?`<section class="section section--border"><div class="shell"><div class="section-head"><div><p class="kicker">Illustrative scenario model</p><h2 class="section-title">See how cost drivers move.</h2></div><p class="body-lg">Demonstration values only. This calculator shows the structure of a cost-to-serve model; it does not reproduce client data or constitute a quotation.</p></div><div class="cost-calculator" data-cost-calc></div></div></section>`:''}
-      <section class="section section--border"><div class="shell outcome-grid" data-reveal><article class="outcome-card"><p class="kicker">Outcome</p><strong>${p.outcome}</strong></article><article class="outcome-card"><p class="kicker">Future scalability</p><p class="body-lg">The architecture can be extended with additional owners, jurisdictions, workflows, data sources, integrations, and reporting without rebuilding the core logic.</p></article></div></section>
-      ${id==='compliance'?`<section class="section--tight"><div class="shell disclaimer"><strong>Important:</strong> This case describes system design, research organization, and workflow architecture. Kairesa does not provide legal representation, certify AML/KYC compliance, or conduct regulated screening services.</div></section>`:''}
+      ${id==='cost'?`<section class="section section--border"><div class="shell"><div class="section-head"><div><p class="kicker">Interactive model</p><h2 class="section-title">Move the cost drivers.</h2></div><p class="body-lg">Illustrative values only.</p></div><div class="cost-calculator" data-cost-calc></div></div></section>`:''}
+      ${id==='compliance'?`<section class="section--tight"><div class="shell disclaimer"><strong>Boundary:</strong> This case describes system design and workflow architecture, not legal representation or compliance certification.</div></section>`:''}
       <section class="section section--border"><div class="shell related-grid"><div><p class="kicker">Related capabilities</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><a class="next-case" href="${next.page}"><p class="kicker">Next project</p><h2 class="card-title">${next.title} ↗</h2></a></div></section>`;
-    setupCaseExplorer(id); if(id==='cost')setupCostCalc();
+    setupCaseExplorer(id);
+    if(id==='cost')setupCostCalc();
   }
 
   function setupCaseExplorer(id){
@@ -373,11 +415,12 @@
       structure:['System Design','The problem is known; the next step is to design the operating architecture, ownership, workflows, controls, and output specification.',['System architecture','RACI / control matrix','Workflow and exception paths','Build specification']],
       build:['Implementation Build','The architecture exists and needs to become documents, models, interfaces, automation, or a working internal tool.',['Production-ready assets','Interface or document system','Testing and validation','Deployment package']],
       fragile:['Optimization Review','The system operates but is expensive, fragile, or dependent on repeated manual decisions.',['Performance and failure-point review','Cost and control analysis','Redesign options','Phased improvement roadmap']]
-    };const result=$('[data-planner-result]',mount);function show(k){const [title,text,items]=options[k];result.innerHTML=`<p class="kicker">Suggested starting point</p><h3>${title}</h3><p>${text}</p><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul><a class="button button--solid" href="contact.html?start=${encodeURIComponent(title)}">Use this starting point ↗</a>`;}show('unclear');$$('[data-plan]',mount).forEach(b=>b.addEventListener('click',()=>{$$('[data-plan]',mount).forEach(x=>x.classList.toggle('is-active',x===b));show(b.dataset.plan);}));
+    };const result=$('[data-planner-result]',mount);function show(k){const [title,text,items]=options[k];result.innerHTML=`<p class="kicker">Suggested starting point</p><h3>${title}</h3><p>${text}</p><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul><a class="button button--solid" href="/contact/?start=${encodeURIComponent(title)}">Use this starting point ↗</a>`;}show('unclear');$$('[data-plan]',mount).forEach(b=>b.addEventListener('click',()=>{$$('[data-plan]',mount).forEach(x=>x.classList.toggle('is-active',x===b));show(b.dataset.plan);}));
   }
 
   function renderInsights(){
-    const mount=$('[data-insights]');if(!mount)return;mount.innerHTML=INSIGHTS.map((x,i)=>`<div class="insight-row" data-insight-row><p class="kicker">${x.category}</p><button type="button" aria-expanded="false">${x.title}</button><span>${x.time}</span></div><div class="insight-expand"><div><div class="insight-copy"><p class="body-lg">${x.summary}</p><p>${x.body}</p></div></div></div>`).join('');$$('[data-insight-row]',mount).forEach(row=>$('button',row).addEventListener('click',e=>{const open=row.classList.toggle('is-open');e.currentTarget.setAttribute('aria-expanded',String(open));}));
+    const mount=$('[data-insights]');if(!mount)return;
+    mount.innerHTML=INSIGHTS.map(x=>`<article class="insight-brief"><p class="kicker">${x.category}</p><h2>${x.title}</h2><p>${x.summary}</p><span class="chip">${x.time}</span></article>`).join('');
   }
 
   function setupWizard(){
@@ -425,5 +468,5 @@
     if(page==='case')renderCase();
   }
 
-  renderShell();setupGlobal();initPage();
+  renderShell();initPage();setupGlobal();
 })();

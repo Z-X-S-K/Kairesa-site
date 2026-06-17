@@ -1,0 +1,12 @@
+/* About page module: history copy can be edited in about/index.html without touching other pages. */
+.about-history{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}
+.about-history article{border:1px solid var(--line);border-radius:34px;background:var(--surface);padding:34px}
+.about-history article:last-child{background:var(--ink);color:var(--bg)}
+.about-history h2{font-family:var(--serif);font-size:36px;line-height:1;font-weight:400;margin:18px 0 13px}
+.about-history p:last-child{margin-bottom:0;color:var(--muted)}
+.about-history article:last-child p{color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.about-direction{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:start}
+.about-direction .section-title{max-width:680px}
+.about-direction-copy{display:grid;gap:21px}
+.about-direction-copy p{margin:0}
+@media(max-width:900px){.about-history,.about-direction{grid-template-columns:1fr}.about-direction{gap:21px}}
