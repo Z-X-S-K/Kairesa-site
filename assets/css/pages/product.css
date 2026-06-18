@@ -19,3 +19,81 @@
 .code-path{font-family:var(--mono);font-size:12px;padding:13px 16px;border:1px solid var(--line);border-radius:13px;background:var(--surface-2);overflow:auto}
 @media(max-width:900px){.product-hero-grid,.product-feature-grid{grid-template-columns:1fr}.product-hero{padding-top:64px}}
 @media(max-width:520px){.feed-item{grid-template-columns:55px 1fr}.feed-item span{display:none}}
+
+/* v1.800 Kairesa Calendar distinct product site */
+.product-page--calendar .product-hero{padding:72px 0 55px;background:radial-gradient(circle at top right,var(--accent-soft),transparent 36%),linear-gradient(180deg,var(--bg),var(--surface-2));}
+.calendar-hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr);align-items:start}
+.product-badge--live{background:var(--surface);box-shadow:0 10px 30px rgba(0,0,0,.04)}
+.calendar-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:34px}
+.calendar-hero-stats article{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:16px 18px}
+.calendar-hero-stats span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.calendar-hero-stats strong{font-size:15px;line-height:1.3}
+.calendar-hero-board{border:1px solid var(--line);border-radius:34px;background:color-mix(in srgb,var(--surface) 94%,transparent);padding:24px;box-shadow:0 24px 70px rgba(17,18,22,.08)}
+.calendar-board-top{display:flex;justify-content:space-between;gap:13px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.calendar-board-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px}
+.calendar-feed-panel,.calendar-brief-panel,.calendar-live-timeline,.calendar-subscribe-band{border:1px solid var(--line);border-radius:28px;background:var(--surface);padding:24px}
+.calendar-feed-empty{color:var(--muted);font-size:14px}
+.live-spotlight{padding-bottom:18px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+.live-spotlight span{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.live-spotlight strong{font-family:var(--serif);font-size:38px;line-height:.95;font-weight:400}
+.live-spotlight p,.live-event-card p,.timeline-feed-card p,.market-brief-card p{margin:0;color:var(--muted)}
+.live-spotlight b{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--accent)}
+.live-event-list,.market-brief-points{display:grid;gap:12px;margin-top:16px}
+.live-event-card,.timeline-feed-card,.market-brief-points article{border:1px solid var(--line);border-radius:18px;padding:14px 16px;background:var(--bg)}
+.live-event-card time,.timeline-feed-card time{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--accent);margin-bottom:8px}
+.live-event-card strong,.timeline-feed-card strong,.market-brief-card h3{display:block;font-size:17px;line-height:1.25;margin-bottom:8px}
+.market-brief-card h3{font-family:var(--serif);font-size:40px;line-height:.96;font-weight:400;margin-top:10px}
+.market-brief-points article{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start}
+.market-brief-points article>span{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);font-family:var(--mono);font-size:10px;color:var(--accent)}
+.market-brief-points article p{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.timeline-columns{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.timeline-column{display:grid;gap:13px}
+.timeline-feed-card--muted{opacity:.82}
+.product-feature-grid--calendar{grid-template-columns:repeat(3,1fr)}
+.product-feature--calendar{background:linear-gradient(180deg,var(--surface),var(--surface-2))}
+.calendar-subscribe-band{display:grid;grid-template-columns:1.2fr auto;gap:24px;align-items:center}
+.calendar-subscribe-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+@media(max-width:1020px){
+  .calendar-hero-grid,.calendar-board-grid,.timeline-columns,.calendar-subscribe-band,.product-feature-grid--calendar{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .calendar-hero-stats{grid-template-columns:1fr}
+  .market-brief-card h3,.live-spotlight strong{font-size:32px}
+  .calendar-hero-board,.calendar-feed-panel,.calendar-brief-panel,.calendar-live-timeline,.calendar-subscribe-band{padding:18px}
+}
+
+/* v2.100 premium calendar product page */
+.product-page--calendar{background:linear-gradient(180deg,#f6f5f1 0%,#efeeea 100%)}
+.product-hero--calendar-v2{padding:88px 0 68px;background:
+  radial-gradient(circle at 18% 8%, rgba(255,255,255,.9), transparent 24%),
+  radial-gradient(circle at 88% 16%, rgba(17,18,22,.08), transparent 20%),
+  linear-gradient(180deg,#fbfbfa 0%,#f0efeb 60%,#ecebe7 100%)}
+.calendar-hero-copy{padding-top:8px}
+.calendar-hero-board--premium{padding:26px;border-radius:38px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(238,238,235,.94));box-shadow:var(--shadow-mid)}
+.calendar-board-grid--premium{grid-template-columns:1.08fr .92fr}
+.calendar-feed-panel--primary,.calendar-brief-panel{background:linear-gradient(180deg,#ffffff 0%,#f4f4f1 100%)}
+.calendar-board-foot{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding-top:16px;border-top:1px solid var(--line);margin-top:18px}
+.calendar-board-foot span{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.calendar-board-foot strong{font-size:14px;line-height:1.45}
+.calendar-site-section--dark{background:linear-gradient(180deg,#111216 0%,#181a1e 100%);color:#f6f5f2}
+.calendar-site-section--dark .body-lg,.calendar-site-section--dark .kicker,.calendar-site-section--dark p{color:rgba(255,255,255,.72)}
+.calendar-site-section--dark .section-title{color:#f7f6f2}
+.calendar-feature-rail{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.calendar-logic-card{border:1px solid rgba(255,255,255,.1);border-radius:30px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.calendar-logic-card span,.pipeline-card span,.usage-card span{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);font-family:var(--mono);font-size:10px;letter-spacing:.12em;margin-bottom:18px}
+.calendar-logic-card h3,.pipeline-card h3{font-family:var(--serif);font-size:34px;line-height:1;font-weight:400;margin:0 0 14px}
+.calendar-logic-card p{margin:0;color:rgba(255,255,255,.72)}
+.calendar-live-timeline{background:linear-gradient(180deg,#ffffff 0%,#f3f3f0 100%);box-shadow:var(--shadow-soft)}
+.calendar-pipeline-section{background:linear-gradient(180deg,#fcfcfa 0%,#f1f0ec 100%)}
+.pipeline-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pipeline-card{border:1px solid var(--line);border-radius:28px;padding:24px;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(242,242,239,.95));box-shadow:var(--shadow-soft)}
+.pipeline-card p{margin:0;color:var(--muted)}
+.calendar-usage-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:24px;align-items:start}
+.usage-cards{display:grid;gap:16px}
+.usage-card{border:1px solid var(--line);border-radius:28px;padding:24px;background:linear-gradient(180deg,#ffffff 0%,#f4f4f1 100%);box-shadow:var(--shadow-soft)}
+.usage-card strong{display:block;font-size:18px;line-height:1.45}
+.usage-card span{width:auto;height:auto;border-radius:999px;padding:9px 12px;background:rgba(17,18,22,.06);margin-bottom:14px}
+.calendar-subscribe-band{background:linear-gradient(180deg,#ffffff 0%,#f1f1ee 100%);box-shadow:var(--shadow-soft)}
+@media(max-width:1080px){
+  .calendar-board-grid--premium,.calendar-board-foot,.calendar-feature-rail,.pipeline-grid,.calendar-usage-grid{grid-template-columns:1fr}
+}

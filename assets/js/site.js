@@ -194,7 +194,7 @@
             <div class="footer-col"><h3>Sitemap</h3><a href="/">Home</a>${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="/contact/">Contact</a></div>
             <div class="footer-col"><h3>Products</h3><a href="/product/kairesa-learn/">Kairesa Learn</a><a href="/product/kairesa-calendar/">Kairesa Calendar</a><h3 class="footer-subhead">Disciplines</h3><a href="/capabilities/#compliance">Compliance</a><a href="/capabilities/#operations">Operations</a><a href="/capabilities/#digital-systems">Digital Systems</a></div>
           </div>
-          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.700 — golden-ratio interface build.</span></div>
+          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v2.100 — full-site product and narrative refinement.</span></div>
         </footer>`;
     }
   }
@@ -335,18 +335,18 @@
   function setupHomeSystem(){
     const mount=$('[data-home-system]'); if(!mount)return;
     const states=[
-      {key:'clarify',step:'01',label:'Clarify',input:'Fragmented requirements',system:'Source hierarchy + issue map',output:'Decision-ready scope',signal:'Traceability established'},
-      {key:'structure',step:'02',label:'Structure',input:'People, process, constraints',system:'Owners + controls + exceptions',output:'Executable operating model',signal:'Dependencies resolved'},
-      {key:'deploy',step:'03',label:'Deploy',input:'Approved system logic',system:'Tool + workflow + handoff',output:'Working system in use',signal:'Maintenance path defined'}
+      {key:'clarify',step:'01',label:'Clarify the real problem',input:'Fragmented requirements, unclear constraints, competing priorities',system:'Scope map, source hierarchy, issue framing',output:'Decision-ready definition of the actual problem',signal:'The project becomes understandable'},
+      {key:'structure',step:'02',label:'Structure the operating model',input:'People, process, rules, and cost drivers',system:'Ownership map, controls, workflows, exceptions',output:'A repeatable operating system that can be used and handed off',signal:'The work becomes repeatable'},
+      {key:'deploy',step:'03',label:'Deploy the working system',input:'Approved system logic and implementation priorities',system:'Tool, dashboard, SOP set, automation, or delivery plan',output:'A system that can be executed, maintained, and expanded',signal:'The system stays useful after launch'}
     ];
-    mount.innerHTML=`<div class="hero-system-top"><span class="kicker">Live system view</span><span class="system-status"><i></i>Ready</span></div>
+    mount.innerHTML=`<div class="hero-system-top"><span class="kicker">How Kairesa works</span><span class="system-status"><i></i>Ready</span></div>
       <div class="hero-system-screen" aria-live="polite"><div class="system-step" data-system-step></div><div class="system-flow" data-system-flow></div><div class="system-signal" data-system-signal></div></div>
-      <div class="hero-system-tabs" role="tablist" aria-label="Kairesa system stages">${states.map((s,i)=>`<button type="button" role="tab" aria-selected="${i===0}" class="${i===0?'is-active':''}" data-system-tab="${s.key}"><span>${s.step}</span>${s.label}</button>`).join('')}</div>`;
+      <div class="hero-system-tabs" role="tablist" aria-label="Kairesa operating stages">${states.map((s,i)=>`<button type="button" role="tab" aria-selected="${i===0}" class="${i===0?'is-active':''}" data-system-tab="${s.key}"><span>${s.step}</span>${s.label.split(' ')[0]}</button>`).join('')}</div>`;
     const render=key=>{
       const s=states.find(x=>x.key===key)||states[0];
       $('[data-system-step]',mount).innerHTML=`<span>${s.step}</span><strong>${s.label}</strong>`;
-      $('[data-system-flow]',mount).innerHTML=`<article><small>INPUT</small><p>${s.input}</p></article><i aria-hidden="true">→</i><article><small>SYSTEM</small><p>${s.system}</p></article><i aria-hidden="true">→</i><article><small>OUTPUT</small><p>${s.output}</p></article>`;
-      $('[data-system-signal]',mount).innerHTML=`<span>System signal</span><strong>${s.signal}</strong><i></i>`;
+      $('[data-system-flow]',mount).innerHTML=`<article><small>STARTS WITH</small><p>${s.input}</p></article><i aria-hidden="true">→</i><article><small>KAIRESA BUILDS</small><p>${s.system}</p></article><i aria-hidden="true">→</i><article><small>RESULT</small><p>${s.output}</p></article>`;
+      $('[data-system-signal]',mount).innerHTML=`<span>Why it matters</span><strong>${s.signal}</strong><i></i>`;
       $$('[data-system-tab]',mount).forEach(b=>{const active=b.dataset.systemTab===key;b.classList.toggle('is-active',active);b.setAttribute('aria-selected',String(active));});
     };
     $$('[data-system-tab]',mount).forEach(b=>b.addEventListener('click',()=>render(b.dataset.systemTab)));
@@ -368,15 +368,21 @@
     const detail=$('[data-cap-detail]',mount);
     const render=id=>{
       const d=DISCIPLINES[id];
-      detail.innerHTML=`<div class="capability-detail-head"><div><p class="kicker">${d.type}</p><h2>${d.title}</h2><p class="body-lg">${d.short}</p></div><p class="body-lg">${d.build}</p></div>
-      <div class="capability-detail-grid capability-detail-grid--concise">
-        <article class="info-card"><h3>Core problem</h3><p>${d.problem}</p></article>
-        <article class="info-card"><h3>What Kairesa builds</h3><p>${d.build}</p></article>
-        <article class="info-card info-card--wide"><h3>Typical outputs</h3><ul>${d.deliverables.slice(0,5).map(x=>`<li>${x}</li>`).join('')}</ul></article>
-        <article class="info-card info-card--wide"><h3>Connected system</h3><div class="term-cloud">${[...d.connects,...d.terms.slice(0,5)].map(x=>`<span class="chip">${x}</span>`).join('')}</div></article>
+      detail.innerHTML=`<section class="capability-stage"><div class="capability-stage-head"><div class="capability-title-block"><p class="kicker">${d.type}</p><h2>${d.title}</h2><p class="body-lg">${d.short}</p></div><div class="capability-visual-block"><div class="capability-visual-shell"><div class="cap-visual-top"><span>System role</span><strong>${d.title}</strong></div><div class="cap-visual-bars">${d.deliverables.slice(0,4).map((x,i)=>`<i style="--w:${[82,64,91,56][i]||72}%"></i>`).join('')}</div><div class="cap-visual-tags">${d.connects.map(x=>`<span>${x}</span>`).join('')}</div></div></div></div>
+      <div class="capability-metric-strip">
+        <article><span>Core problem</span><strong>${d.problem.split('. ')[0]}.</strong></article>
+        <article><span>Kairesa builds</span><strong>${d.build.split(',').slice(0,2).join(' and ')}</strong></article>
+        <article><span>Works with</span><strong>${d.connects.join(' · ')}</strong></article>
+      </div>
+      <div class="capability-detail-grid capability-detail-grid--v2">
+        <article class="info-card info-card--wide"><h3>What this capability solves</h3><p>${d.problem}</p></article>
+        <article class="info-card"><h3>Typical outputs</h3><ul>${d.deliverables.slice(0,6).map(x=>`<li>${x}</li>`).join('')}</ul></article>
+        <article class="info-card"><h3>System vocabulary</h3><div class="term-cloud">${d.terms.slice(0,8).map(x=>`<span class="chip">${x}</span>`).join('')}</div></article>
+        <article class="info-card"><h3>Connected disciplines</h3><div class="term-cloud">${d.connects.map(x=>`<span class="chip">${x}</span>`).join('')}</div></article>
+        <article class="info-card"><h3>What Kairesa builds</h3><ul>${d.build.split(',').map(x=>`<li>${x.trim().replace(/\.$/,'')}</li>`).slice(0,5).join('')}</ul></article>
       </div>
       ${id==='compliance'?`<div class="disclaimer"><strong>Boundary:</strong> Kairesa structures research, documentation, workflows, and internal controls. It does not provide legal representation or certify regulatory compliance.</div>`:''}
-      <div><a class="button button--solid" href="/contact/?discipline=${encodeURIComponent(d.title)}">Discuss this system ↗</a></div>`;
+      <div class="capability-action-row"><a class="button button--solid" href="/contact/?discipline=${encodeURIComponent(d.title)}">Discuss this system ↗</a></div></section>`;
     };
     render('compliance');
     $$('[data-cap-menu]',mount).forEach(btn=>btn.addEventListener('click',()=>{
@@ -453,6 +459,115 @@
     update();
   }
 
+  async function fetchMarketFeed(){
+    if(fetchMarketFeed.cache)return fetchMarketFeed.cache;
+    const urls=['https://nfs.faireconomy.media/ff_calendar_thisweek.json','https://nfs.faireconomy.media/ff_calendar_thisweek.json?version=1'];
+    const parseDate=value=>{
+      if(value===undefined||value===null||value==='')return null;
+      if(typeof value==='number')return new Date(value*1000);
+      const d=new Date(String(value));
+      return isNaN(d)?null:d;
+    };
+    const important=['CPI','PPI','PCE','Non-Farm','Nonfarm','NFP','Employment','Unemployment','FOMC','Federal Funds','Powell','GDP','Retail Sales','ISM','PMI','JOLTS','Jobless Claims'];
+    const makeTitle=item=>`${(item.currency||item.country||'').toString().toUpperCase()} ${(item.title||item.event||item.name||item.headline||'Economic event').toString().trim()}`.trim();
+    const keep=item=>{
+      const currency=(item.currency||item.country||'').toString().toUpperCase();
+      const impact=(item.impact||item.importance||'').toString().toLowerCase();
+      const title=makeTitle(item).toLowerCase();
+      return currency==='USD' && (impact.includes('high')||impact==='3'||impact==='red'||important.some(k=>title.includes(k.toLowerCase())));
+    };
+    const normalize=list=>list.filter(keep).map(item=>{
+      const date=parseDate(item.date||item.datetime||item.timestamp);
+      return date?{title:makeTitle(item),date,impact:'High',forecast:item.forecast||'',previous:item.previous||'',actual:item.actual||'',source:'Live feed'}:null;
+    }).filter(Boolean).sort((a,b)=>a.date-b.date).slice(0,12);
+    const parseICS=raw=>{
+      const blocks=raw.split('BEGIN:VEVENT').slice(1).map(x=>x.split('END:VEVENT')[0]);
+      const out=[];
+      blocks.forEach(block=>{
+        const dt=(block.match(/DTSTART:(\d{8}T\d{6})Z/)||[])[1];
+        const summary=(block.match(/SUMMARY:(.+)/)||[])[1];
+        if(!dt||!summary)return;
+        const date=new Date(`${dt.slice(0,4)}-${dt.slice(4,6)}-${dt.slice(6,8)}T${dt.slice(9,11)}:${dt.slice(11,13)}:${dt.slice(13,15)}Z`);
+        out.push({title:summary.replace(/\,/g,',').replace(/\n/g,' '),date,impact:'High',source:'ICS'});
+      });
+      return out.sort((a,b)=>a.date-b.date).slice(0,12);
+    };
+    fetchMarketFeed.cache=(async()=>{
+      for(const url of urls){
+        try{
+          const resp=await fetch(url,{headers:{'Accept':'application/json'}});
+          if(resp.ok){
+            const data=normalize(await resp.json());
+            if(data.length)return data;
+          }
+        }catch(_){ }
+      }
+      try{
+        const resp=await fetch('/product/kairesa-calendar/calendar.ics',{cache:'no-store'});
+        if(resp.ok){
+          const data=parseICS(await resp.text());
+          if(data.length)return data;
+        }
+      }catch(_){ }
+      return [];
+    })();
+    return fetchMarketFeed.cache;
+  }
+
+  function marketInsight(title){
+    const t=title.toLowerCase();
+    if(t.includes('cpi')||t.includes('pce')||t.includes('ppi'))return 'Inflation data can quickly reshape rate expectations, Treasury yields, gold, and the dollar.';
+    if(t.includes('fomc')||t.includes('federal funds')||t.includes('powell')||t.includes('fed'))return 'Fed policy events often reset the path for rates, risk assets, and USD direction.';
+    if(t.includes('employment')||t.includes('nonfarm')||t.includes('nfp')||t.includes('unemployment')||t.includes('jobless'))return 'Labor-market surprises often move the dollar, yields, and equity index expectations.';
+    if(t.includes('gdp')||t.includes('retail sales')||t.includes('ism')||t.includes('pmi')||t.includes('jolts'))return 'Growth-sensitive releases can shift recession, demand, and policy expectations.';
+    return 'A high-impact macro release that matters because markets will compare the result to expectations.';
+  }
+
+  function formatMarketTime(date){
+    try{return new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(date);}catch(_){return date.toISOString();}
+  }
+
+  async function setupMarketFeedSurfaces(){
+    const hasHome=Boolean($('[data-live-calendar-preview]'));
+    const hasCalendarProduct=document.body.dataset.product==='calendar';
+    if(!hasHome&&!hasCalendarProduct)return;
+    const events=await fetchMarketFeed();
+    if(hasHome)renderHomeCalendarPreview(events);
+    if(hasCalendarProduct)renderCalendarProduct(events);
+  }
+
+  function renderHomeCalendarPreview(events){
+    const mount=$('[data-live-calendar-preview]');
+    if(!mount)return;
+    const list=events.slice(0,3);
+    if(!list.length){
+      mount.innerHTML=`<div class="calendar-event"><time>Feed</time><strong>No live events available right now</strong><b></b></div><div class="calendar-event"><time>Try again</time><strong>The preview refreshes automatically when the source updates</strong><b></b></div><div class="calendar-event"><time>ICS</time><strong>Calendar subscription remains available</strong><b></b></div>`;
+      const status=$('[data-live-calendar-status]'); if(status)status.textContent='Live source temporarily unavailable';
+      return;
+    }
+    mount.innerHTML=list.map(ev=>`<div class="calendar-event"><time>${formatMarketTime(ev.date)}</time><strong>${ev.title}</strong><b></b></div>`).join('');
+    const status=$('[data-live-calendar-status]');
+    if(status)status.textContent=`${list.length} live market items loaded`;
+  }
+
+  function renderCalendarProduct(events){
+    const live=$('[data-calendar-live]'),brief=$('[data-market-brief]'),timeline=$('[data-calendar-timeline]');
+    if(!live||!brief||!timeline)return;
+    if(!events.length){
+      live.innerHTML='<div class="calendar-feed-empty">No live USD events were available. The ICS subscription link still works and the page will refresh when the feed returns.</div>';
+      brief.innerHTML='<div class="calendar-feed-empty">A market brief will appear here when live events are available.</div>';
+      timeline.innerHTML='<div class="calendar-feed-empty">The event timeline is waiting for the next successful update.</div>';
+      return;
+    }
+    const now=Date.now();
+    const upcoming=events.filter(ev=>ev.date.getTime()>=now-12*3600*1000).slice(0,4);
+    const recent=events.filter(ev=>ev.date.getTime()<now).slice(-4).reverse();
+    const primary=upcoming[0]||events[0];
+    live.innerHTML=`<div class="live-spotlight"><span>Next focus</span><strong>${primary.title}</strong><p>${marketInsight(primary.title)}</p><b>${formatMarketTime(primary.date)}</b></div><div class="live-event-list">${upcoming.map(ev=>`<article class="live-event-card"><time>${formatMarketTime(ev.date)}</time><strong>${ev.title}</strong><p>${marketInsight(ev.title)}</p></article>`).join('')}</div>`;
+    brief.innerHTML=`<div class="market-brief-card"><span class="kicker">Latest market brief</span><h3>${primary.title}</h3><p>${marketInsight(primary.title)}</p><div class="market-brief-points">${events.slice(0,3).map((ev,i)=>`<article><span>0${i+1}</span><div><strong>${ev.title}</strong><p>${formatMarketTime(ev.date)}</p></div></article>`).join('')}</div></div>`;
+    timeline.innerHTML=`<div class="timeline-columns"><div class="timeline-column"><p class="kicker">Upcoming</p>${upcoming.map(ev=>`<article class="timeline-feed-card"><time>${formatMarketTime(ev.date)}</time><strong>${ev.title}</strong><p>${marketInsight(ev.title)}</p></article>`).join('')}</div><div class="timeline-column"><p class="kicker">Recently on the radar</p>${recent.map(ev=>`<article class="timeline-feed-card timeline-feed-card--muted"><time>${formatMarketTime(ev.date)}</time><strong>${ev.title}</strong><p>${marketInsight(ev.title)}</p></article>`).join('')}</div></div>`;
+  }
+
   function setupWizard(){
     const mount=$('[data-wizard]');if(!mount)return;let step=0;const state={complexity:'',outcome:'',today:'',timeline:'',budget:'',name:'',email:'',organization:'',notes:''};
     const steps=['Complexity','Outcome','Today','Scope','You'];
@@ -498,6 +613,7 @@
     if(page==='work')setupFilters();
     if(page==='contact')setupWizard();
     if(page==='case')renderCase();
+    if(page==='product'&&document.body.dataset.product==='calendar')setupMarketFeedSurfaces();
   }
 
   renderShell();initPage();setupGlobal();
