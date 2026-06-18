@@ -1,0 +1,76 @@
+/* Kairesa v1.622 — shared motion layer.
+   Only transform/opacity animations are used for smooth tablet performance. */
+
+.page-intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--bg);transform:translateY(0);transition:transform .72s cubic-bezier(.76,0,.24,1) .34s;pointer-events:none}
+.page-intro-inner{display:grid;justify-items:center;gap:14px;min-width:180px}
+.page-intro-mark{width:48px;height:48px;opacity:0;transform:translateY(14px) scale(.92);animation:intro-mark .42s cubic-bezier(.2,.8,.2,1) forwards .08s}
+.page-intro-word{font-family:var(--serif);font-size:15px;letter-spacing:.26em;opacity:0;transform:translateY(8px);animation:intro-word .4s ease forwards .18s}
+.page-intro-inner i{display:block;width:0;height:1px;background:var(--accent);animation:intro-line .46s cubic-bezier(.2,.8,.2,1) forwards .22s}
+html.is-ready .page-intro{transform:translateY(-100%)}
+html.is-loading{overflow:hidden}
+html.is-loading .site-header{opacity:0;transform:translateY(-14px)}
+html.is-ready .site-header{animation:header-enter .58s cubic-bezier(.2,.8,.2,1) .5s both}
+html.is-leaving body{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
+
+@keyframes intro-mark{to{opacity:1;transform:none}}
+@keyframes intro-word{to{opacity:1;transform:none}}
+@keyframes intro-line{to{width:100%}}
+@keyframes header-enter{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+
+[data-reveal]{opacity:0;transform:translateY(28px) scale(.992);filter:blur(3px);transition:opacity .78s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),transform .78s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),filter .6s ease var(--reveal-delay,0ms)}
+[data-reveal].is-visible{opacity:1;transform:none;filter:none}
+.display,.page-title,.section-title{transform-origin:left bottom}
+.hero-copy.is-visible .display,.page-hero-grid>div.is-visible .page-title,.section-head.is-visible .section-title{animation:title-settle .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes title-settle{0%{letter-spacing:.015em;transform:translateY(18px);opacity:.4}100%{letter-spacing:normal;transform:none;opacity:1}}
+
+body[data-page="home"] .hero{position:relative;overflow:hidden}
+body[data-page="home"] .hero::before{content:"";position:absolute;width:48vw;height:48vw;min-width:420px;min-height:420px;right:-13vw;top:-24vw;border:1px solid var(--line);border-radius:50%;opacity:.55;animation:hero-orbit 18s linear infinite;pointer-events:none}
+body[data-page="home"] .hero::after{content:"";position:absolute;width:16px;height:16px;right:19%;top:22%;border-radius:50%;background:var(--accent);box-shadow:0 0 0 18px color-mix(in srgb,var(--accent) 10%,transparent);animation:hero-pulse 3.2s ease-in-out infinite;pointer-events:none}
+.hero-grid--solo{grid-template-columns:minmax(0,980px)!important;min-height:min(720px,72vh);align-items:center!important}
+.hero-grid--solo .hero-copy{position:relative;z-index:1}
+@keyframes hero-orbit{to{transform:rotate(360deg)}}
+@keyframes hero-pulse{50%{transform:scale(.72);opacity:.45}}
+
+.section-head::after{content:"";display:block;grid-column:1/-1;height:1px;background:linear-gradient(90deg,var(--accent),var(--line) 24%,transparent);transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.2,.8,.2,1) .18s}
+.section-head.is-visible::after{transform:scaleX(1)}
+
+.motion-card{position:relative;isolation:isolate}
+.motion-card::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit;pointer-events:none;opacity:0;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--accent) 12%,transparent),transparent 68%);transition:opacity .25s ease}
+.motion-card:hover::after{opacity:1}
+
+.discipline-network svg line{stroke-dasharray:8 8;animation:network-flow 13s linear infinite}
+.discipline-node{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s ease,color .35s ease,border-color .35s ease}
+.discipline-node.is-active{transform:scale(1.06)}
+.network-core{animation:core-breathe 4s ease-in-out infinite}
+@keyframes network-flow{to{stroke-dashoffset:-160}}
+@keyframes core-breathe{50%{transform:translate(-50%,-50%) scale(1.035)}}
+
+.product-window{transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.product-card:hover .product-window{transform:translateY(-5px) rotateX(1.5deg)}
+.product-lines span:nth-child(2){animation:product-bar 3.4s ease-in-out infinite}
+.calendar-event{animation:calendar-float 4.8s ease-in-out infinite}
+.calendar-event:nth-child(2){animation-delay:.45s}.calendar-event:nth-child(3){animation-delay:.9s}
+@keyframes product-bar{50%{width:88%}}
+@keyframes calendar-float{50%{transform:translateX(5px)}}
+
+.accordion-trigger .accordion-icon{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.accordion-item.is-open .accordion-icon{transform:rotate(180deg)}
+.button,.text-link{transition:transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease}
+.button:hover,.text-link:hover{transform:translateY(-2px)}
+
+@media(max-width:1240px){
+  .hero-grid--solo{min-height:620px}
+  body[data-page="home"] .hero::before{right:-28vw;top:-18vw}
+}
+@media(max-width:720px){
+  .hero-grid--solo{min-height:auto}
+  body[data-page="home"] .hero::before{width:560px;height:560px;right:-390px;top:-150px}
+  body[data-page="home"] .hero::after{right:13%;top:16%}
+  [data-reveal]{transform:translateY(20px);filter:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .page-intro{display:none}
+  html.is-loading{overflow:auto}
+  [data-reveal]{opacity:1!important;transform:none!important;filter:none!important}
+  .discipline-network svg line,.network-core,.product-lines span,.calendar-event,body[data-page="home"] .hero::before,body[data-page="home"] .hero::after{animation:none!important}
+}

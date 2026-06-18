@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="/assets/img/app-icon.png">
   <link rel="stylesheet" href="/assets/css/styles.css">
   <link rel="stylesheet" href="/assets/css/tuning.css">
+  <link rel="stylesheet" href="/assets/css/motion.css">
   <link rel="stylesheet" href="/assets/css/pages/home.css">
   <link rel="canonical" href="https://kairesa.com/">
   <meta property="og:type" content="website">
@@ -23,31 +24,13 @@
 
 <main id="main">
   <section class="hero">
-    <div class="shell hero-grid">
+    <div class="shell hero-grid hero-grid--solo">
       <div class="hero-copy" data-reveal>
         <p class="eyebrow">A · 001 / Multidisciplinary solutions</p>
         <h1 class="display">We systematize<br>complexity.</h1>
         <p class="body-lg">Kairesa transforms fragmented requirements, inefficient workflows, opaque costs, and disconnected tools into practical systems that people and organizations can actually use.</p>
         <div class="hero-actions"><a class="button button--solid" href="/capabilities/">Explore capabilities ↗</a><a class="button button--soft" href="/work/">View selected work</a></div>
       </div>
-      <aside class="hero-aside" data-reveal>
-        <div class="hero-stat"><strong>03</strong><p>Primary capabilities: Compliance, Operations, and Digital Systems.</p></div>
-        <div class="hero-stat"><strong>06</strong><p>Connected disciplines operating as one system.</p></div>
-        <div class="hero-stat"><strong>04</strong><p>Stages from research through implementation.</p></div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section section--tight">
-    <div class="shell system-core" data-system-core data-reveal>
-      <svg viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
-        <path data-system-path="Rules" d="M120 90 C360 90 400 250 520 300"/><path data-system-path="Processes" d="M110 310 C300 310 410 310 520 310"/><path data-system-path="Costs" d="M150 540 C330 500 410 380 520 320"/>
-        <path data-system-path="Structure" d="M680 300 C800 250 850 90 1080 90"/><path data-system-path="Workflow" d="M680 310 C790 310 900 310 1090 310"/><path data-system-path="Scale" d="M680 320 C800 390 900 510 1050 540"/>
-      </svg>
-      <button class="io-node" data-system-node="Rules" data-pos="i1">Rules</button><button class="io-node" data-system-node="Processes" data-pos="i2">Processes</button><button class="io-node" data-system-node="Costs" data-pos="i3">Costs</button>
-      <div class="core-node"><span class="brand-mark" aria-hidden="true"></span><span>Kairesa system core</span></div>
-      <button class="io-node" data-system-node="Structure" data-pos="o1">Structure</button><button class="io-node" data-system-node="Workflow" data-pos="o2">Workflow</button><button class="io-node" data-system-node="Scale" data-pos="o3">Control & scale</button>
-      <p class="core-caption">Documents · Data · Ownership · Controls · Tools</p>
     </div>
   </section>
 
@@ -59,7 +42,7 @@
     <div class="shell"><div class="section-head" data-reveal><div><p class="kicker">02 · Selected work</p><h2 class="section-title">Systems, not slide decks.</h2></div><p class="body-lg">Each case is presented through an original abstraction of the problem, operating logic, system built, and outcome. No client files or confidential materials are exposed.</p></div><div class="project-grid" data-home-projects></div><div style="margin-top:34px"><a class="button button--soft" href="/work/">Explore all work ↗</a></div></div>
   </section>
 
-  <section class="section section--border">
+  <section id="products" class="section section--border">
     <div class="shell">
       <div class="section-head" data-reveal><div><p class="kicker">03 · Kairesa products</p><h2 class="section-title">Working systems you can open.</h2></div><p class="body-lg">Two live product experiments translate Kairesa’s operating methods into tools for planning, decisions, and recurring information.</p></div>
       <div class="product-showcase-grid">
@@ -85,25 +68,13 @@
     </div>
   </section>
 
-  <section class="section section--border">
-    <div class="shell"><div class="section-head" data-reveal><div><p class="kicker">04 · System transformation</p><h2 class="section-title">Before and after the operating model.</h2></div><p class="body-lg">Drag the divider. The value of a system is not more documentation; it is a change in how decisions, ownership, information, and exceptions are handled.</p></div>
-      <div class="compare" data-compare data-reveal>
-        <div class="compare-layer compare-before"><div><p class="kicker">System state · unstructured</p><div class="compare-label">Before</div></div><div class="compare-list"><div class="compare-item"><span>01</span>Fragmented information</div><div class="compare-item"><span>02</span>Repeated decisions</div><div class="compare-item"><span>03</span>Unclear ownership</div><div class="compare-item"><span>04</span>Hidden cost logic</div><div class="compare-item"><span>05</span>Disconnected tools</div></div></div>
-        <div class="compare-after-wrap"><div class="compare-layer compare-after"><div><p class="kicker">System state · structured</p><div class="compare-label">After</div></div><div class="compare-list"><div class="compare-item"><span>01</span>Defined source hierarchy</div><div class="compare-item"><span>02</span>Repeatable workflows</div><div class="compare-item"><span>03</span>Visible ownership and controls</div><div class="compare-item"><span>04</span>Transparent cost drivers</div><div class="compare-item"><span>05</span>Scalable tools</div></div></div></div>
-        <div class="compare-handle"></div><input type="range" min="25" max="75" value="50" aria-label="Compare before and after system states">
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--border"><div class="shell"><div class="section-head" data-reveal><div><p class="kicker">05 · Methodology</p><h2 class="section-title">A working model, not a presentation.</h2></div><p class="body-lg">Each stage has defined inputs, questions, outputs, risks, and a handoff condition. Select a stage to inspect the logic.</p></div><div data-home-method></div></div></section>
-
-  <section class="section section--border"><div class="shell"><div class="section-head" data-reveal><div><p class="kicker">06 · Why Kairesa</p><h2 class="section-title">Built for real constraints.</h2></div><p class="body-lg">Small teams, incomplete information, limited budgets, and changing requirements are not edge cases. They are the design environment.</p></div><div class="accordion">
+  <section class="section section--border"><div class="shell"><div class="section-head" data-reveal><div><p class="kicker">04 · Why Kairesa</p><h2 class="section-title">Built for real constraints.</h2></div><p class="body-lg">Small teams, incomplete information, limited budgets, and changing requirements are not edge cases. They are the design environment.</p></div><div class="accordion">
     <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Cross-disciplinary by design</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">Compliance affects operations; operations affect cost; cost affects contracts and the business model; technology can improve all of them. Kairesa designs the seams rather than treating each discipline as an isolated assignment.</p></div></div></article>
     <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>From recommendation to finished system</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">Outputs may include obligations registers, AML/KYC workflow maps, SOP libraries, RACI matrices, cost models, dashboards, websites, automation, training modules, and implementation roadmaps.</p></div></div></article>
     <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Designed for handoff</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">A system is not complete until ownership, update logic, exceptions, maintenance, and future expansion are clear to the people who will use it.</p></div></div></article>
     <article class="accordion-item"><button class="accordion-trigger" data-accordion-trigger aria-expanded="false"><span>Modular and scalable</span><span class="accordion-icon">+</span></button><div class="accordion-body"><div><p class="accordion-copy">The first phase is designed to be useful at the client’s current size while preserving a path toward standardized processes, richer data, and future software.</p></div></div></article>
   </div></div></section>
 
-  <section class="cta"><div class="shell"><div class="cta-panel" data-reveal><div><p class="kicker">G · 007 / Start a project</p><h2>Bring us the complex part.</h2><p>We will help define it, structure it, build it, and put it into use.</p></div><div><a class="button button--solid" href="/contact/">Start a project ↗</a> <button class="button" type="button" data-share>Share Kairesa</button></div></div></div></section>
+  <section class="cta"><div class="shell"><div class="cta-panel" data-reveal><div><p class="kicker">G · 005 / Start a project</p><h2>Bring us the complex part.</h2><p>We will help define it, structure it, build it, and put it into use.</p></div><div><a class="button button--solid" href="/contact/">Start a project ↗</a> <button class="button" type="button" data-share>Share Kairesa</button></div></div></div></section>
 </main>
 <div id="site-footer"></div><script src="/assets/js/site.js"></script></body></html>

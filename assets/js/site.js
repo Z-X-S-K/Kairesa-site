@@ -16,9 +16,8 @@
   const NAV = [
     ['/capabilities/', 'Capabilities', 'capabilities'],
     ['/work/', 'Work', 'work'],
-    ['/methodology/', 'Methodology', 'methodology'],
-    ['/about/', 'About', 'about'],
-    ['/insights/', 'Insights', 'insights']
+    ['/#products', 'Products', 'products'],
+    ['/about/', 'About', 'about']
   ];
 
   const DISCIPLINES = {
@@ -120,13 +119,6 @@
     }
   ];
 
-  const METHODS = [
-    {title:'Research', inputs:['Operating context','Constraints','Stakeholders','Existing artefacts'], questions:['What is actually happening today?','Where do decisions stall?','Which sources are authoritative?'], outputs:['Problem map','Source hierarchy','Key questions'], risks:['Mistaking opinion for evidence','Under-scoping edge cases'], handoff:'All material questions are answered, assigned, or explicitly bounded.'},
-    {title:'Structure', inputs:['Research findings','Decision points','Dependencies','Risk appetite'], questions:['What must be standardized?','Where is human judgment still required?','Who owns each control?'], outputs:['System architecture','RACI / control map','Workflow and exception paths'], risks:['Designing for the ideal case only','Creating ownership gaps'], handoff:'The operating logic and ownership model are clear enough to build.'},
-    {title:'Build', inputs:['Approved architecture','Content and source material','Technical constraints','Delivery format'], questions:['What is the smallest useful system?','What should be automated?','What must remain editable?'], outputs:['Documents, SOPs or models','Interface and data structure','Implementation package'], risks:['Overbuilding before validation','Hiding logic inside the tool'], handoff:'The system is usable, testable, documented, and ready for deployment.'},
-    {title:'Implement', inputs:['Finished assets','Users and owners','Training needs','Deployment environment'], questions:['Who maintains the system?','What indicates failure?','How are exceptions escalated?'], outputs:['Handoff and training','Deployment checklist','Iteration roadmap'], risks:['Weak ownership after delivery','No feedback or revision loop'], handoff:'The system is in use, owned, and capable of controlled improvement.'}
-  ];
-
   const CASE_LAYERS = {
     operational: {
       People: {title:'People and ownership', summary:'Roles are treated as system nodes, not informal job descriptions.', bullets:['RACI ownership by task and control','Training sequence and competency checkpoints','Break and coverage allocation','Escalation authority and handoff rules'], logic:'Clarifies who decides, who executes, who verifies, and who receives the handoff.'},
@@ -157,13 +149,6 @@
       ICS:{title:'ICS subscription',summary:'Calendar-compatible events are generated and published as a subscription feed.',bullets:['UID and recurrence handling','Timezone-aware DTSTART','DESCRIPTION metadata','Update and cancellation logic'],logic:'Users receive updates in the calendar they already use.'}
     }
   };
-
-  const INSIGHTS = [
-    {category:'Compliance Systems',title:'Treat regulation as a control system, not a document',time:'6 min',summary:'Requirement maps are most useful when they connect source, owner, evidence, risk, status, and remediation—not when they merely summarize a rule.',body:'A practical compliance system should make five questions answerable at any time: what is required, where the requirement came from, who owns it, what evidence demonstrates performance, and what happens when the control fails. AML/KYC programs illustrate the point. A policy alone does not execute customer identification, UBO collection, PEP or OFAC screening, CDD/EDD triggers, periodic review, and issue escalation. The operating value sits in the connections between those elements.'},
-    {category:'Operational Design',title:'SOPs fail when exception paths are implicit',time:'5 min',summary:'Standard work is incomplete until peak demand, shortages, quality failures, and ownership conflicts have defined responses.',body:'A useful SOP does more than describe the normal sequence. It identifies completion conditions, critical controls, handoffs, escalation authority, and the point at which the standard path must stop. This turns an SOP from a reference document into an operating control.'},
-    {category:'Cost Intelligence',title:'A supplier quote is not a cost model',time:'5 min',summary:'A price becomes actionable only after it is decomposed into controllable variables and compared under consistent assumptions.',body:'Total landed cost, cost-to-serve, packaging, labour, minimums, loss, returns, and integration requirements often move independently. A good comparison model normalizes those components, exposes sensitivity, and prevents a low headline price from hiding a high operating cost.'},
-    {category:'Practical Technology',title:'Internal tools beat all-purpose software when the workflow is specific',time:'6 min',summary:'A narrow tool can create more value than a broad platform when it mirrors the actual decisions, states, and handoffs of the user.',body:'The goal is not custom software for its own sake. The question is whether a lightweight tool can remove repeated administrative decisions, preserve operating logic, and remain easier to change than a patchwork of generic products.'}
-  ];
 
   const $ = (s, root=document) => root.querySelector(s);
   const $$ = (s, root=document) => [...root.querySelectorAll(s)];
@@ -209,12 +194,16 @@
             <div class="footer-col"><h3>Sitemap</h3><a href="/">Home</a>${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="/contact/">Contact</a></div>
             <div class="footer-col"><h3>Products</h3><a href="/product/kairesa-learn/">Kairesa Learn</a><a href="/product/kairesa-calendar/">Kairesa Calendar</a><h3 class="footer-subhead">Disciplines</h3><a href="/capabilities/#compliance">Compliance</a><a href="/capabilities/#operations">Operations</a><a href="/capabilities/#digital-systems">Digital Systems</a></div>
           </div>
-          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.620 — modular build.</span></div>
+          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.622 — dynamic modular build.</span></div>
         </footer>`;
     }
   }
 
   function setupGlobal(){
+    setupOpeningMotion();
+    prepareMotionTargets();
+    setupMotionCards();
+    setupPageTransitions();
     const root=document.documentElement;
     let saved=''; try{saved=localStorage.getItem('kairesa-theme')||'';}catch(_){ }
     root.dataset.theme=saved || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
@@ -242,6 +231,62 @@
     $$('[data-share]').forEach(b=>b.addEventListener('click',async()=>{const data={title:'Kairesa',text:'Kairesa — We systematize complexity.',url:location.href};try{if(navigator.share)await navigator.share(data);else{await navigator.clipboard.writeText(location.href);toast('Link copied');}}catch(_){}}));
   }
 
+
+  function setupOpeningMotion(){
+    const root=document.documentElement;
+    if(matchMedia('(prefers-reduced-motion:reduce)').matches){root.classList.add('is-ready');return;}
+    root.classList.add('is-loading');
+    const intro=document.createElement('div');
+    intro.className='page-intro';
+    intro.setAttribute('aria-hidden','true');
+    intro.innerHTML='<div class="page-intro-inner"><span class="page-intro-mark brand-mark"></span><span class="page-intro-word">KAIRESA</span><i></i></div>';
+    document.body.prepend(intro);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('is-ready')));
+    const finish=()=>{root.classList.remove('is-loading');intro.remove();};
+    intro.addEventListener('transitionend',e=>{if(e.target===intro)finish()},{once:true});
+    setTimeout(finish,1300);
+  }
+
+  function prepareMotionTargets(){
+    const selectors=[
+      '.page-hero-grid > *','.section-head','.project-card','.product-card','.pattern',
+      '.info-card','.about-history article','.about-direction > *','.capability-menu',
+      '.capability-detail','.network-layout','.cta-panel','.contact-wizard',
+      '.case-summary-grid article','.layer-explorer','.outcome-grid > *','.related-grid > *'
+    ];
+    $$(selectors.join(',')).forEach(el=>{if(!el.hasAttribute('data-reveal'))el.setAttribute('data-reveal','');});
+    $$('[data-reveal]').forEach((el,i)=>{
+      const siblings=el.parentElement?[...el.parentElement.children].filter(x=>x.hasAttribute('data-reveal')):[];
+      const position=Math.max(0,siblings.indexOf(el));
+      el.style.setProperty('--reveal-delay',`${Math.min(position*70,280)}ms`);
+    });
+  }
+
+  function setupMotionCards(){
+    if(!matchMedia('(hover:hover) and (pointer:fine)').matches||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+    $$('.project-card,.product-card,.info-card,.pattern,.about-history article').forEach(card=>{
+      card.classList.add('motion-card');
+      card.addEventListener('pointermove',e=>{
+        const r=card.getBoundingClientRect();
+        card.style.setProperty('--mx',`${e.clientX-r.left}px`);
+        card.style.setProperty('--my',`${e.clientY-r.top}px`);
+      },{passive:true});
+    });
+  }
+
+  function setupPageTransitions(){
+    document.addEventListener('click',e=>{
+      if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+      const a=e.target.closest('a[href]'); if(!a||a.target||a.hasAttribute('download'))return;
+      const url=new URL(a.href,location.href);
+      if(url.origin!==location.origin||url.protocol==='mailto:'||url.protocol==='tel:')return;
+      if(url.pathname===location.pathname&&url.search===location.search)return;
+      e.preventDefault();
+      document.documentElement.classList.add('is-leaving');
+      setTimeout(()=>{location.href=url.href},180);
+    });
+  }
+
   function toast(message){
     let el=$('.toast'); if(!el){el=document.createElement('div');el.className='toast';document.body.append(el);} el.textContent=message;el.classList.add('is-visible');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('is-visible'),2200);
   }
@@ -267,22 +312,31 @@
 
   function setupNetwork(root=document){
     $$('[data-network]',root).forEach(net=>{
-      const panel=$('[data-network-panel]',net); const activate=id=>{
-        const d=DISCIPLINES[id]; if(!d)return; panel.innerHTML=networkPanel(d);
-        $$('[data-node]',net).forEach(n=>n.classList.toggle('is-active',n.dataset.node===id));
+      const panel=$('[data-network-panel]',net);
+      const nodes=$$('[data-node]',net);
+      let index=0, timer=0, paused=false;
+      const activate=id=>{
+        const d=DISCIPLINES[id]; if(!d)return;
+        panel.innerHTML=networkPanel(d);
+        panel.animate([{opacity:.35,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:320,easing:'cubic-bezier(.2,.8,.2,1)'});
+        nodes.forEach(n=>n.classList.toggle('is-active',n.dataset.node===id));
         $$('[data-line]',net).forEach(l=>l.classList.toggle('is-active',l.dataset.line===id||d.connects.some(c=>DISCIPLINES[l.dataset.line]?.title===c)));
-      }; activate('compliance');
-      $$('[data-node]',net).forEach(n=>{n.addEventListener('mouseenter',()=>activate(n.dataset.node));n.addEventListener('focus',()=>activate(n.dataset.node));n.addEventListener('click',()=>activate(n.dataset.node));});
+      };
+      const start=()=>{
+        clearInterval(timer);
+        if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+        timer=setInterval(()=>{if(!paused){index=(index+1)%nodes.length;activate(nodes[index].dataset.node);}},2600);
+      };
+      activate('compliance');
+      nodes.forEach((n,i)=>{
+        n.addEventListener('mouseenter',()=>{paused=true;index=i;activate(n.dataset.node)});
+        n.addEventListener('focus',()=>{paused=true;index=i;activate(n.dataset.node)});
+        n.addEventListener('click',()=>{paused=true;index=i;activate(n.dataset.node);setTimeout(()=>{paused=false},3200)});
+      });
+      net.addEventListener('mouseleave',()=>{paused=false});
+      net.addEventListener('focusout',e=>{if(!net.contains(e.relatedTarget))paused=false});
+      start();
     });
-  }
-
-  function setupSystemCore(){
-    const core=$('[data-system-core]'); if(!core)return;
-    const nodes=$$('[data-system-node]',core),paths=$$('[data-system-path]',core);let idx=0,timer;
-    const activate=n=>{nodes.forEach(x=>x.classList.toggle('is-active',x===n));paths.forEach(p=>p.classList.toggle('is-active',p.dataset.systemPath===n.dataset.systemNode));};
-    nodes.forEach(n=>{n.addEventListener('mouseenter',()=>{clearInterval(timer);activate(n)});n.addEventListener('mouseleave',start);n.addEventListener('focus',()=>activate(n));});
-    function start(){clearInterval(timer);timer=setInterval(()=>{activate(nodes[idx++%nodes.length]);},1800);} start();
-    core.addEventListener('pointermove',e=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const r=core.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$('.core-node',core)?.style.setProperty('transform',`translate(${x*10}px,${y*10}px)`);});
   }
 
   function projectVisual(p){
@@ -293,7 +347,7 @@
     return `<div class="flow-viz"><span>SOURCE</span><span>NORMALIZE</span><span>CLASSIFY</span><span>WEB</span><span>ICS</span></div>`;
   }
 
-  function projectCard(p){return `<article class="project-card ${p.featured?'is-featured':'is-wide'}" data-project data-category="${p.category}">
+  function projectCard(p){return `<article class="project-card ${p.featured?'is-featured':'is-wide'}" data-project data-reveal data-motion-card data-category="${p.category}">
     <div class="project-visual">${projectVisual(p)}</div><div class="project-content"><div class="project-meta"><span>${p.index} · ${p.category}</span><span>${p.tags[0]}</span></div><h3>${esc(p.title)}</h3><p class="project-summary">${esc(p.summary)}</p>
     <div class="project-reveal"><div><div class="project-details"><p><strong>Challenge</strong><br>${esc(p.challenge)}</p><p><strong>System built</strong><br>${esc(p.built)}</p><p><strong>Outcome</strong><br>${esc(p.outcome)}</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div></div></div></div>
     <div class="project-actions"><button class="project-expand" type="button" aria-expanded="false">Explore summary +</button><a class="text-link" href="${p.page}">Open case ↗</a></div></div></article>`;}
@@ -307,41 +361,6 @@
   function setupFilters(){
     const mount=$('[data-project-library]'); if(!mount)return; renderProjects($('.project-grid',mount));
     $$('[data-filter]',mount).forEach(btn=>btn.addEventListener('click',()=>{const cat=btn.dataset.filter;$$('[data-filter]',mount).forEach(b=>b.classList.toggle('is-active',b===btn));let c=0;$$('[data-project]',mount).forEach(card=>{const show=cat==='All'||card.dataset.category===cat;card.hidden=!show;if(show)c++;});$('[data-project-count]',mount).textContent=String(c).padStart(2,'0')+' projects';}));
-  }
-
-  function setupCompare(){
-    $$('[data-compare]').forEach(box=>{
-      const input=$('input',box);
-      if(!input)return;
-      let frame=0;
-      const measure=()=>box.style.setProperty('--compare-width',`${box.clientWidth}px`);
-      const paint=()=>{
-        frame=0;
-        const value=Math.max(25,Math.min(75,Number(input.value)||50));
-        box.style.setProperty('--split',`${value}%`);
-        box.style.setProperty('--after-width',`${100-value}%`);
-      };
-      const update=()=>{
-        if(frame)return;
-        frame=requestAnimationFrame(paint);
-      };
-      input.addEventListener('input',update,{passive:true});
-      if('ResizeObserver' in window)new ResizeObserver(measure).observe(box);
-      else addEventListener('resize',measure,{passive:true});
-      measure();
-      paint();
-    });
-  }
-
-  function methodologyMarkup(){
-    return `<div class="method-shell" data-methodology><div class="method-nav">${METHODS.map((m,i)=>`<button class="method-btn ${i===0?'is-active':''}" data-method="${i}" type="button"><span>0${i+1}</span><strong>${m.title}</strong></button>`).join('')}</div><div class="method-stage" data-method-stage></div></div>`;
-  }
-  function methodStage(m){
-    const card=(title,items)=>`<article class="method-card"><h3>${title}</h3><ul>${items.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></article>`;
-    return `${card('Inputs',m.inputs)}${card('Key questions',m.questions)}${card('Outputs',m.outputs)}${card('Risks to watch',m.risks)}<article class="method-card handoff"><h3>Handoff</h3><p>${esc(m.handoff)}</p></article>`;
-  }
-  function setupMethodology(root=document){
-    $$('[data-methodology]',root).forEach(mount=>{const stage=$('[data-method-stage]',mount);const activate=i=>{stage.innerHTML=methodStage(METHODS[i]);$$('[data-method]',mount).forEach((b,j)=>b.classList.toggle('is-active',i===j));stage.animate([{opacity:.2,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:260,easing:'ease-out'});};activate(0);$$('[data-method]',mount).forEach(b=>b.addEventListener('click',()=>activate(Number(b.dataset.method))));});
   }
 
   function setupAccordions(){
@@ -409,20 +428,6 @@
     const update=()=>{const vals=$$('[data-range]',mount).map(r=>Number(r.value)),total=vals.reduce((a,b)=>a+b,0);$('[data-total]',mount).textContent=`$${total.toFixed(2)}`;vals.forEach((v,i)=>{$(`[data-out="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-val="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-bar="${i}"]`,mount).style.width=`${total?v/total*100:0}%`;});};$$('[data-range]',mount).forEach(r=>r.addEventListener('input',update));update();
   }
 
-  function setupPlanner(){
-    const mount=$('[data-engagement-planner]');if(!mount)return;const options={
-      unclear:['Discovery & Mapping','Start with a focused diagnostic sprint to define the problem, sources, constraints, ownership, and smallest useful next phase.',['Intake and material review','Problem and dependency map','Priority and risk register','Recommended build scope']],
-      structure:['System Design','The problem is known; the next step is to design the operating architecture, ownership, workflows, controls, and output specification.',['System architecture','RACI / control matrix','Workflow and exception paths','Build specification']],
-      build:['Implementation Build','The architecture exists and needs to become documents, models, interfaces, automation, or a working internal tool.',['Production-ready assets','Interface or document system','Testing and validation','Deployment package']],
-      fragile:['Optimization Review','The system operates but is expensive, fragile, or dependent on repeated manual decisions.',['Performance and failure-point review','Cost and control analysis','Redesign options','Phased improvement roadmap']]
-    };const result=$('[data-planner-result]',mount);function show(k){const [title,text,items]=options[k];result.innerHTML=`<p class="kicker">Suggested starting point</p><h3>${title}</h3><p>${text}</p><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul><a class="button button--solid" href="/contact/?start=${encodeURIComponent(title)}">Use this starting point ↗</a>`;}show('unclear');$$('[data-plan]',mount).forEach(b=>b.addEventListener('click',()=>{$$('[data-plan]',mount).forEach(x=>x.classList.toggle('is-active',x===b));show(b.dataset.plan);}));
-  }
-
-  function renderInsights(){
-    const mount=$('[data-insights]');if(!mount)return;
-    mount.innerHTML=INSIGHTS.map(x=>`<article class="insight-brief"><p class="kicker">${x.category}</p><h2>${x.title}</h2><p>${x.summary}</p><span class="chip">${x.time}</span></article>`).join('');
-  }
-
   function setupWizard(){
     const mount=$('[data-wizard]');if(!mount)return;let step=0;const state={complexity:'',outcome:'',today:'',timeline:'',budget:'',name:'',email:'',organization:'',notes:''};
     const steps=['Complexity','Outcome','Today','Scope','You'];
@@ -458,12 +463,13 @@
   function initPage(){
     const page=pageName();
     if(page==='home'){
-      const net=$('[data-home-network]');if(net)net.innerHTML=networkMarkup();setupNetwork();setupSystemCore();renderProjects($('[data-home-projects]'),4);setupCompare();const method=$('[data-home-method]');if(method)method.innerHTML=methodologyMarkup();setupMethodology();setupAccordions();
+      const net=$('[data-home-network]');if(net)net.innerHTML=networkMarkup();
+      setupNetwork();
+      renderProjects($('[data-home-projects]'),4);
+      setupAccordions();
     }
     if(page==='capabilities'){renderCapabilitiesPage();const net=$('[data-cap-network]');if(net)net.innerHTML=networkMarkup();setupNetwork();}
     if(page==='work')setupFilters();
-    if(page==='methodology'){const mount=$('[data-method-page]');if(mount)mount.innerHTML=methodologyMarkup();setupMethodology();setupPlanner();}
-    if(page==='insights')renderInsights();
     if(page==='contact')setupWizard();
     if(page==='case')renderCase();
   }

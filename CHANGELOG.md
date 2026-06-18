@@ -1,3 +1,11 @@
+# Changelog
+
+## v1.622
+- Removed Methodology and Insights from navigation, sitemap, and published pages.
+- Removed homepage hero statistics, system-core interaction, before/after slider, and methodology module.
+- Added an isolated motion module with opening animation, staggered reveals, page transitions, ambient network motion, and product micro-interactions.
+- Preserved the existing visual language and page content.
+
 # v1.620 changes
 
 - Converted canonical pages to clean directory URLs (`/about/`, `/work/`, etc.).
