@@ -83,8 +83,8 @@
     },
     {
       id: 'cost', page: '/case-cost/', index: '02', category: 'Cost',
-      title: 'Cold-Chain Cost Intelligence',
-      summary: 'A decision system that decomposed nationwide frozen-product fulfilment into controllable cost components.',
+      title: 'Cost Intelligence',
+      summary: 'A decision system that turns opaque supplier, logistics, and service costs into controllable variables. Cold-chain fulfilment is used as the applied case.',
       challenge: 'A single supplier price obscured storage, pick-and-pack, packaging, refrigerant, dimensional weight, delivery speed, loss, and returns.',
       built: 'Total-landed-cost model, cost-to-serve analysis, DIM-weight logic, warehouse comparison, packaging scenarios, vendor scorecard, and sensitivity analysis.',
       outcome: 'An opaque quote became a transparent decision model with individually controllable variables.',
@@ -165,7 +165,7 @@
         <div class="site-progress" aria-hidden="true"></div>
         <header class="site-header" data-header>
           <div class="shell header-inner">
-            <a class="brand" href="/" aria-label="Kairesa home"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
+            <a class="brand" href="/" aria-label="Kairesa home"><span class="brand-mark brand-mark--image" aria-hidden="true"><img class="brand-mark-img brand-mark-img--light" src="/assets/img/mark-black.png" alt=""><img class="brand-mark-img brand-mark-img--dark" src="/assets/img/mark-white.png" alt=""></span><span class="brand-word">KAIRESA</span></a>
             <nav class="desktop-nav" aria-label="Primary navigation">
               ${NAV.map(([href,label,key])=>`<a href="${href}" class="${active===key?'is-active':''}">${label}</a>`).join('')}
             </nav>
@@ -186,7 +186,7 @@
         <footer class="site-footer">
           <div class="shell footer-grid">
             <div class="footer-brand">
-              <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span><span class="brand-word">KAIRESA</span></a>
+              <a class="brand" href="/" aria-label="Kairesa home"><span class="brand-mark brand-mark--image" aria-hidden="true"><img class="brand-mark-img brand-mark-img--light" src="/assets/img/mark-black.png" alt=""><img class="brand-mark-img brand-mark-img--dark" src="/assets/img/mark-white.png" alt=""></span><span class="brand-word">KAIRESA</span></a>
               <h2>Systems designed to stay useful.</h2>
               <p class="muted">Compliance, operations, cost intelligence, and practical technology—structured for implementation.</p>
               <div><a class="text-link" href="mailto:${SITE.email}">${SITE.email} ↗</a></div>
@@ -194,16 +194,14 @@
             <div class="footer-col"><h3>Sitemap</h3><a href="/">Home</a>${NAV.map(([href,label])=>`<a href="${href}">${label}</a>`).join('')}<a href="/contact/">Contact</a></div>
             <div class="footer-col"><h3>Products</h3><a href="/product/kairesa-learn/">Kairesa Learn</a><a href="/product/kairesa-calendar/">Kairesa Calendar</a><h3 class="footer-subhead">Disciplines</h3><a href="/capabilities/#compliance">Compliance</a><a href="/capabilities/#operations">Operations</a><a href="/capabilities/#digital-systems">Digital Systems</a></div>
           </div>
-          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.622 — dynamic modular build.</span></div>
+          <div class="shell footer-bottom"><span>© ${new Date().getFullYear()} Kairesa. Technology, structured for real life.</span><span>v1.700 — golden-ratio interface build.</span></div>
         </footer>`;
     }
   }
 
   function setupGlobal(){
-    setupOpeningMotion();
     prepareMotionTargets();
     setupMotionCards();
-    setupPageTransitions();
     const root=document.documentElement;
     let saved=''; try{saved=localStorage.getItem('kairesa-theme')||'';}catch(_){ }
     root.dataset.theme=saved || (matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
@@ -232,21 +230,6 @@
   }
 
 
-  function setupOpeningMotion(){
-    const root=document.documentElement;
-    if(matchMedia('(prefers-reduced-motion:reduce)').matches){root.classList.add('is-ready');return;}
-    root.classList.add('is-loading');
-    const intro=document.createElement('div');
-    intro.className='page-intro';
-    intro.setAttribute('aria-hidden','true');
-    intro.innerHTML='<div class="page-intro-inner"><span class="page-intro-mark brand-mark"></span><span class="page-intro-word">KAIRESA</span><i></i></div>';
-    document.body.prepend(intro);
-    requestAnimationFrame(()=>requestAnimationFrame(()=>root.classList.add('is-ready')));
-    const finish=()=>{root.classList.remove('is-loading');intro.remove();};
-    intro.addEventListener('transitionend',e=>{if(e.target===intro)finish()},{once:true});
-    setTimeout(finish,1300);
-  }
-
   function prepareMotionTargets(){
     const selectors=[
       '.page-hero-grid > *','.section-head','.project-card','.product-card','.pattern',
@@ -271,19 +254,6 @@
         card.style.setProperty('--mx',`${e.clientX-r.left}px`);
         card.style.setProperty('--my',`${e.clientY-r.top}px`);
       },{passive:true});
-    });
-  }
-
-  function setupPageTransitions(){
-    document.addEventListener('click',e=>{
-      if(e.defaultPrevented||e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
-      const a=e.target.closest('a[href]'); if(!a||a.target||a.hasAttribute('download'))return;
-      const url=new URL(a.href,location.href);
-      if(url.origin!==location.origin||url.protocol==='mailto:'||url.protocol==='tel:')return;
-      if(url.pathname===location.pathname&&url.search===location.search)return;
-      e.preventDefault();
-      document.documentElement.classList.add('is-leaving');
-      setTimeout(()=>{location.href=url.href},180);
     });
   }
 
@@ -340,22 +310,47 @@
   }
 
   function projectVisual(p){
-    if(p.visual==='grid')return `<div class="mini-grid">${Array.from({length:24},(_,i)=>`<span></span>`).join('')}</div>`;
-    if(p.visual==='bars')return `<div class="bar-stack">${[23,39,54,68,82].map(w=>`<i style="--w:${w}%"></i>`).join('')}</div>`;
-    if(p.visual==='timeline')return `<div class="timeline-viz">${Array.from({length:9},(_,i)=>`<span class="${i===4?'is-hot':''}"></span>`).join('')}</div>`;
-    if(p.visual==='matrix')return `<div class="mini-grid">${Array.from({length:24},(_,i)=>`<span></span>`).join('')}</div>`;
-    return `<div class="flow-viz"><span>SOURCE</span><span>NORMALIZE</span><span>CLASSIFY</span><span>WEB</span><span>ICS</span></div>`;
+    if(p.id==='operational')return `<div class="work-viz work-viz--operations" aria-hidden="true">
+      <span class="work-viz-label">OPEN</span><span class="work-viz-label">RUN</span><span class="work-viz-label">VERIFY</span><span class="work-viz-label">HANDOFF</span>
+      <i></i><i></i><i></i><b>RACI</b></div>`;
+    if(p.id==='cost')return `<div class="work-viz work-viz--cost" aria-hidden="true"><small>APPLIED CASE · COLD CHAIN</small>
+      ${[31,48,67,83].map((w,i)=>`<span><em>${['Storage','Package','Shipping','Loss'][i]}</em><i style="--w:${w}%"></i></span>`).join('')}<b>TCO</b></div>`;
+    if(p.id==='learning')return `<div class="work-viz work-viz--learning" aria-hidden="true"><div><small>CYCLE 04</small><strong>72%</strong><span>Adaptive plan</span></div><ol>${Array.from({length:8},(_,i)=>`<li class="${i<5?'is-done':i===5?'is-now':''}"></li>`).join('')}</ol></div>`;
+    if(p.id==='compliance')return `<div class="work-viz work-viz--compliance" aria-hidden="true">${['SOURCE','OBLIGATION','OWNER','CONTROL','EVIDENCE','REVIEW'].map((x,i)=>`<span class="${i===3?'is-hot':''}">${x}</span>`).join('')}</div>`;
+    return `<div class="work-viz work-viz--calendar" aria-hidden="true">${['SOURCE','NORMALIZE','CLASSIFY','WEB','ICS'].map((x,i)=>`<span class="${i===2?'is-hot':''}"><i>0${i+1}</i>${x}</span>`).join('')}</div>`;
   }
 
   function projectCard(p){return `<article class="project-card ${p.featured?'is-featured':'is-wide'}" data-project data-reveal data-motion-card data-category="${p.category}">
-    <div class="project-visual">${projectVisual(p)}</div><div class="project-content"><div class="project-meta"><span>${p.index} · ${p.category}</span><span>${p.tags[0]}</span></div><h3>${esc(p.title)}</h3><p class="project-summary">${esc(p.summary)}</p>
-    <div class="project-reveal"><div><div class="project-details"><p><strong>Challenge</strong><br>${esc(p.challenge)}</p><p><strong>System built</strong><br>${esc(p.built)}</p><p><strong>Outcome</strong><br>${esc(p.outcome)}</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div></div></div></div>
-    <div class="project-actions"><button class="project-expand" type="button" aria-expanded="false">Explore summary +</button><a class="text-link" href="${p.page}">Open case ↗</a></div></div></article>`;}
+    <a class="project-visual" href="${p.page}" aria-label="Open ${esc(p.title)} case study">${projectVisual(p)}</a>
+    <div class="project-content"><div class="project-meta"><span>${p.index} · ${p.category}</span><span>${p.tags[0]}</span></div><h3><a href="${p.page}">${esc(p.title)}</a></h3><p class="project-summary">${esc(p.summary)}</p>
+    <div class="project-reveal"><div><div class="project-details"><p><strong>Problem</strong><br>${esc(p.challenge)}</p><p><strong>System built</strong><br>${esc(p.built)}</p><p><strong>Outcome</strong><br>${esc(p.outcome)}</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div></div></div></div>
+    <div class="project-actions"><button class="project-expand" type="button" aria-expanded="false">System brief +</button><a class="text-link" href="${p.page}">Open case <span>↗</span></a></div></div></article>`;}
 
   function renderProjects(mount,limit=0){
     if(!mount)return; const list=limit?PROJECTS.slice(0,limit):PROJECTS;
     mount.innerHTML=list.map(projectCard).join('');
     $$('[data-project]',mount).forEach(card=>{$('.project-expand',card)?.addEventListener('click',e=>{const open=card.classList.toggle('is-open');e.currentTarget.setAttribute('aria-expanded',String(open));e.currentTarget.textContent=open?'Close summary −':'Explore summary +';});});
+  }
+
+  function setupHomeSystem(){
+    const mount=$('[data-home-system]'); if(!mount)return;
+    const states=[
+      {key:'clarify',step:'01',label:'Clarify',input:'Fragmented requirements',system:'Source hierarchy + issue map',output:'Decision-ready scope',signal:'Traceability established'},
+      {key:'structure',step:'02',label:'Structure',input:'People, process, constraints',system:'Owners + controls + exceptions',output:'Executable operating model',signal:'Dependencies resolved'},
+      {key:'deploy',step:'03',label:'Deploy',input:'Approved system logic',system:'Tool + workflow + handoff',output:'Working system in use',signal:'Maintenance path defined'}
+    ];
+    mount.innerHTML=`<div class="hero-system-top"><span class="kicker">Live system view</span><span class="system-status"><i></i>Ready</span></div>
+      <div class="hero-system-screen" aria-live="polite"><div class="system-step" data-system-step></div><div class="system-flow" data-system-flow></div><div class="system-signal" data-system-signal></div></div>
+      <div class="hero-system-tabs" role="tablist" aria-label="Kairesa system stages">${states.map((s,i)=>`<button type="button" role="tab" aria-selected="${i===0}" class="${i===0?'is-active':''}" data-system-tab="${s.key}"><span>${s.step}</span>${s.label}</button>`).join('')}</div>`;
+    const render=key=>{
+      const s=states.find(x=>x.key===key)||states[0];
+      $('[data-system-step]',mount).innerHTML=`<span>${s.step}</span><strong>${s.label}</strong>`;
+      $('[data-system-flow]',mount).innerHTML=`<article><small>INPUT</small><p>${s.input}</p></article><i aria-hidden="true">→</i><article><small>SYSTEM</small><p>${s.system}</p></article><i aria-hidden="true">→</i><article><small>OUTPUT</small><p>${s.output}</p></article>`;
+      $('[data-system-signal]',mount).innerHTML=`<span>System signal</span><strong>${s.signal}</strong><i></i>`;
+      $$('[data-system-tab]',mount).forEach(b=>{const active=b.dataset.systemTab===key;b.classList.toggle('is-active',active);b.setAttribute('aria-selected',String(active));});
+    };
+    $$('[data-system-tab]',mount).forEach(b=>b.addEventListener('click',()=>render(b.dataset.systemTab)));
+    render(states[0].key);
   }
 
   function setupFilters(){
@@ -393,19 +388,40 @@
     if(match){const btn=$(`[data-cap-menu="${match[0]}"]`,mount);btn?.click();}
   }
 
+  function caseHeroVisual(p){
+    if(p.id==='operational')return `<div class="case-system-visual case-system-visual--operational"><div class="ops-lanes">${['OPEN','PREP','SERVICE','CLOSE'].map((x,i)=>`<span class="${i===2?'is-active':''}"><i>0${i+1}</i>${x}</span>`).join('')}</div><div class="ops-core"><strong>OWNERSHIP</strong><small>RACI · CONTROL · HANDOFF</small></div></div>`;
+    if(p.id==='cost')return `<div class="case-system-visual case-system-visual--cost"><div class="applied-case"><span>APPLIED CASE</span><strong>Cold-chain fulfilment</strong></div><div class="cost-hero-total"><small>MODELLED COST / ORDER</small><strong>$60.00</strong></div><div class="cost-hero-bars">${[['Storage',18],['Packaging',31],['Refrigerant',25],['Shipping',72],['Loss',13]].map(([x,w])=>`<span><em>${x}</em><i style="--w:${w}%"></i></span>`).join('')}</div></div>`;
+    if(p.id==='learning')return `<div class="case-system-visual case-system-visual--learning"><div class="learning-metric"><small>ADAPTIVE CYCLE</small><strong>72%</strong><span>On-track with recovery capacity</span></div><div class="learning-grid">${['Milestone','Tasks','Cash flow','Recovery'].map((x,i)=>`<span class="${i===1?'is-active':''}"><i>0${i+1}</i>${x}</span>`).join('')}</div></div>`;
+    if(p.id==='compliance')return `<div class="case-system-visual case-system-visual--compliance"><div class="compliance-axis"><span>REQUIREMENT</span><span>OWNER</span><span>CONTROL</span><span>EVIDENCE</span></div><div class="compliance-cells">${Array.from({length:20},(_,i)=>`<i class="${[2,7,13,18].includes(i)?'is-active':''}"></i>`).join('')}</div><div class="compliance-status"><i></i>Traceable control path</div></div>`;
+    return `<div class="case-system-visual case-system-visual--calendar"><div class="calendar-pipeline">${['SOURCE','NORMALIZE','CLASSIFY','WEB','ICS'].map((x,i)=>`<span class="${i===4?'is-active':''}"><i>0${i+1}</i><strong>${x}</strong></span>`).join('')}</div><div class="calendar-event-card"><time>08:30</time><div><small>USD · HIGH IMPACT</small><strong>Economic event published</strong></div><i></i></div></div>`;
+  }
+
   function renderCase(){
     const root=$('[data-case-root]'); if(!root)return;
     const id=document.body.dataset.caseId;
     const p=PROJECTS.find(x=>x.id===id); if(!p)return;
     const next=PROJECTS[(PROJECTS.indexOf(p)+1)%PROJECTS.length];
-    root.innerHTML=`<section class="case-hero"><div class="shell case-hero-grid"><div data-reveal><p class="eyebrow">${p.index} · ${p.category}</p><h1 class="page-title">${p.title}</h1><p class="body-lg">${p.summary}</p><div class="case-tags">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><div class="case-visual" data-reveal>${projectVisual(p)}</div></div></section>
-      <section class="section section--border"><div class="shell case-summary-grid" data-reveal><article><p class="kicker">Problem</p><p class="lead">${p.challenge}</p></article><article><p class="kicker">System built</p><p class="body-lg">${p.built}</p></article><article><p class="kicker">Outcome</p><p class="body-lg">${p.outcome}</p></article></div></section>
-      <section class="section section--border"><div class="shell layer-explorer" data-case-explorer="${id}"><div class="layer-canvas"><div data-layer-visual></div><div class="layer-controls" data-layer-controls></div></div><div class="layer-copy" data-layer-copy></div></div></section>
-      ${id==='cost'?`<section class="section section--border"><div class="shell"><div class="section-head"><div><p class="kicker">Interactive model</p><h2 class="section-title">Move the cost drivers.</h2></div><p class="body-lg">Illustrative values only.</p></div><div class="cost-calculator" data-cost-calc></div></div></section>`:''}
+    const explorerTitle={operational:'Operate through ownership, sequence, and control.',cost:'See what actually moves the cost.',learning:'Let the plan respond to changing capacity.',compliance:'Trace every obligation to evidence.',calendar:'Follow one event from source to calendar.'}[id];
+    root.innerHTML=`<section class="case-hero case-hero--${id}"><div class="shell case-hero-grid"><div class="case-hero-copy" data-reveal><a class="case-back" href="/work/">← Selected work</a><p class="eyebrow">${p.index} · ${p.category}</p><h1 class="page-title">${p.title}</h1><p class="body-lg">${p.summary}</p><div class="case-tags">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><div class="case-visual case-visual--${id}" data-reveal>${caseHeroVisual(p)}</div></div></section>
+      <section class="section section--border case-summary-section"><div class="shell case-summary-grid" data-reveal><article><p class="kicker">Problem</p><p class="lead">${p.challenge}</p></article><article><p class="kicker">System built</p><p class="body-lg">${p.built}</p></article><article><p class="kicker">Outcome</p><p class="body-lg">${p.outcome}</p></article></div></section>
+      <section class="section section--border"><div class="shell"><div class="section-head case-section-head" data-reveal><div><p class="kicker">Interactive system</p><h2 class="section-title">${explorerTitle}</h2></div><p class="body-lg">Select a layer to inspect the operating logic, the system components, and the decision rule behind it.</p></div><div class="case-explorer case-explorer--${id}" data-case-explorer="${id}" data-reveal><nav class="case-explorer-nav" data-layer-controls aria-label="Case system layers"></nav><div class="case-explorer-stage" data-layer-visual></div><div class="case-explorer-copy" data-layer-copy></div></div></div></section>
+      ${id==='cost'?`<section class="section section--border cost-application"><div class="shell"><div class="application-banner" data-reveal><div><p class="kicker">Applied case · Cold-chain fulfilment</p><h2 class="section-title">A broad cost system, tested against a demanding use case.</h2></div><p class="body-lg">Frozen-product fulfilment exposes the full model: warehouse handling, packaging, refrigerant, dimensional weight, service level, loss, and returns. The same cost architecture can be reused for other products and delivery systems.</p></div><div class="section-head calculator-head" data-reveal><div><p class="kicker">Interactive calculator</p><h2 class="section-title">Move the cost drivers.</h2></div><p class="body-lg">Illustrative values only. Adjust each component or load a scenario preset.</p></div><div class="cost-calculator" data-cost-calc data-reveal></div></div></section>`:''}
       ${id==='compliance'?`<section class="section--tight"><div class="shell disclaimer"><strong>Boundary:</strong> This case describes system design and workflow architecture, not legal representation or compliance certification.</div></section>`:''}
-      <section class="section section--border"><div class="shell related-grid"><div><p class="kicker">Related capabilities</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><a class="next-case" href="${next.page}"><p class="kicker">Next project</p><h2 class="card-title">${next.title} ↗</h2></a></div></section>`;
+      <section class="section section--border"><div class="shell related-grid"><div><p class="kicker">System vocabulary</p><div class="term-cloud">${p.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div></div><a class="next-case" href="${next.page}"><p class="kicker">Next project</p><h2 class="card-title">${next.title} <span>↗</span></h2></a></div></section>`;
     setupCaseExplorer(id);
     if(id==='cost')setupCostCalc();
+  }
+
+  function caseStageVisual(id,key,d,keys){
+    const n=keys.indexOf(key);
+    if(id==='operational')return `<div class="stage-operations"><div class="stage-lanes">${keys.map((x,i)=>`<span class="${i===n?'is-active':i<n?'is-complete':''}"><i>0${i+1}</i>${x}</span>`).join('')}</div><div class="stage-control"><small>CURRENT CONTROL</small><strong>${d.title}</strong><p>${d.logic}</p></div></div>`;
+    if(id==='cost'){
+      const widths=[[22,37,58,76,31],[18,29,49,68,24],[31,44,64,83,36]][n]||[22,37,58,76,31];
+      return `<div class="stage-cost"><div class="stage-cost-total"><small>${key.toUpperCase()} VIEW</small><strong>${n===0?'$60.00':n===1?'3':'86/100'}</strong><span>${n===0?'Illustrative cost / order':n===1?'Comparable scenarios':'Operating-fit score'}</span></div><div class="stage-cost-bars">${['Handling','Package','Freight','Service','Risk'].map((x,i)=>`<span><em>${x}</em><i style="--w:${widths[i]}%"></i></span>`).join('')}</div></div>`;
+    }
+    if(id==='learning')return `<div class="stage-learning"><div class="stage-learning-top"><span><small>ACTIVE LAYER</small><strong>${key}</strong></span><b>${[72,64,41,79,52][n]||72}%</b></div><div class="stage-learning-track">${Array.from({length:10},(_,i)=>`<i class="${i<5+n%3?'is-done':i===5+n%3?'is-now':''}"></i>`).join('')}</div><div class="stage-learning-cards">${d.bullets.slice(0,3).map((x,i)=>`<span><i>0${i+1}</i>${x}</span>`).join('')}</div></div>`;
+    if(id==='compliance')return `<div class="stage-compliance"><div class="stage-compliance-head"><span>Source</span><span>Requirement</span><span>Owner</span><span>Control</span><span>Evidence</span></div>${Array.from({length:5},(_,r)=>`<div class="stage-compliance-row">${Array.from({length:5},(_,c)=>`<i class="${c===n%5||r===n%5?'is-active':''}">${c===4&&r===n%5?'✓':''}</i>`).join('')}</div>`).join('')}<p><i></i>${d.logic}</p></div>`;
+    return `<div class="stage-calendar"><div class="stage-calendar-pipeline">${keys.map((x,i)=>`<span class="${i===n?'is-active':i<n?'is-complete':''}"><i>0${i+1}</i><strong>${x}</strong></span>`).join('')}</div><div class="stage-calendar-record"><span><small>STATUS</small><strong>${n===keys.length-1?'Subscribed':'Processing'}</strong></span><span><small>ACTIVE RULE</small><strong>${d.title}</strong></span></div></div>`;
   }
 
   function setupCaseExplorer(id){
@@ -413,19 +429,28 @@
     let data=CASE_LAYERS[id];
     if(id==='cost') data={Cost:{title:'Cost-driver model',summary:'Each cost is separated into a named driver, unit, assumption, and scenario.',bullets:['Storage and handling','Packaging and refrigerant','DIM-weight shipping','Loss and returns'],logic:'A price becomes a model when each component can be changed independently.'},Scenario:{title:'Scenario comparison',summary:'Warehouse, package, service, and volume assumptions can be compared consistently.',bullets:['Baseline vs. alternative','Sensitivity to weight and zone','Volume-tier effects','Service-level tradeoffs'],logic:'Alternatives are evaluated under the same assumptions.'},Vendor:{title:'Vendor scorecard',summary:'Price is considered alongside operating fit.',bullets:['TCO and minimums','Integration and communication','Service coverage','Quality and claims process'],logic:'The lowest quote is not automatically the lowest cost-to-serve.'}};
     const controls=$('[data-layer-controls]',mount),copy=$('[data-layer-copy]',mount),visual=$('[data-layer-visual]',mount);const keys=Object.keys(data);
-    controls.innerHTML=keys.map((k,i)=>`<button class="layer-btn ${i===0?'is-active':''}" type="button" data-layer="${k}">${k}</button>`).join('');
-    function draw(key){const d=data[key];copy.innerHTML=`<p class="kicker">Layer · ${key}</p><h2>${d.title}</h2><p class="body-lg">${d.summary}</p><section><h3>What Kairesa built</h3><ul>${d.bullets.map(x=>`<li>${x}</li>`).join('')}</ul></section><section><h3>Decision logic</h3><p>${d.logic}</p></section>`;
-      if(id==='learning')visual.innerHTML=`<div class="timeline-grid">${Array.from({length:9},(_,i)=>`<span class="${i===keys.indexOf(key)+2?'is-active':''}"></span>`).join('')}</div>`;
-      else if(id==='compliance')visual.innerHTML=`<div class="control-matrix">${['Source','Obligation','Owner','Control','Evidence','KYC','KYB','UBO','PEP','OFAC','CDD','EDD','Risk','Issue','Remediation','Review','Approval','Retention','Status','Change'].map(x=>`<button class="${x.toLowerCase().includes(key.toLowerCase().slice(0,3))?'is-active':''}" type="button">${x}</button>`).join('')}</div>`;
-      else if(id==='calendar')visual.innerHTML=`<div class="flow-viz"><span>SOURCE</span><span>NORMALIZE</span><span>CLASSIFY</span><span>WEB</span><span>ICS</span></div>`;
-      else visual.innerHTML=`<div class="case-diagram"><i class="axis x"></i><i class="axis y"></i>${d.bullets.map((x,i)=>`<span class="node ${i===0?'is-active':''}" style="left:${10+(i%2)*52}%;top:${10+Math.floor(i/2)*38}%">${x}</span>`).join('')}</div>`;
-    }draw(keys[0]);$$('[data-layer]',mount).forEach(b=>b.addEventListener('click',()=>{$$('[data-layer]',mount).forEach(x=>x.classList.toggle('is-active',x===b));draw(b.dataset.layer);}));
+    controls.innerHTML=keys.map((k,i)=>`<button class="case-layer-btn ${i===0?'is-active':''}" type="button" data-layer="${k}" aria-pressed="${i===0}"><span>0${i+1}</span>${k}</button>`).join('');
+    function draw(key){const d=data[key];
+      copy.innerHTML=`<p class="kicker">Layer · ${key}</p><h3>${d.title}</h3><p class="body-lg">${d.summary}</p><div class="case-copy-block"><h4>What Kairesa built</h4><ul>${d.bullets.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="decision-rule"><span>Decision rule</span><p>${d.logic}</p></div>`;
+      visual.innerHTML=caseStageVisual(id,key,d,keys);
+      $$('[data-layer]',mount).forEach(b=>{const active=b.dataset.layer===key;b.classList.toggle('is-active',active);b.setAttribute('aria-pressed',String(active));});
+    }
+    draw(keys[0]);
+    $$('[data-layer]',mount).forEach(b=>b.addEventListener('click',()=>draw(b.dataset.layer)));
   }
 
   function setupCostCalc(){
-    const mount=$('[data-cost-calc]');if(!mount)return;const fields=[['Storage & handling',5,0,20],['Packaging',10,0,30],['Refrigerant',7,0,25],['Shipping',35,5,80],['Loss allowance',3,0,20]];
-    mount.innerHTML=`<div class="calc-controls"><p class="kicker">Scenario inputs</p>${fields.map((f,i)=>`<label class="range-row"><span>${f[0]}</span><output data-out="${i}">$${f[1].toFixed(2)}</output><input type="range" min="${f[2]}" max="${f[3]}" step=".5" value="${f[1]}" data-range="${i}"></label>`).join('')}</div><div class="calc-output"><p class="kicker">Illustrative cost per order</p><div class="calc-total" data-total>$60.00</div><div class="calc-bars">${fields.map((f,i)=>`<div class="calc-bar"><span>${f[0]}</span><i><span data-bar="${i}"></span></i><b data-val="${i}"></b></div>`).join('')}</div><p class="calc-note">Demonstration data only. Taxes, product cost, discounts, claims, minimums, and other commercial terms are excluded.</p></div>`;
-    const update=()=>{const vals=$$('[data-range]',mount).map(r=>Number(r.value)),total=vals.reduce((a,b)=>a+b,0);$('[data-total]',mount).textContent=`$${total.toFixed(2)}`;vals.forEach((v,i)=>{$(`[data-out="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-val="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-bar="${i}"]`,mount).style.width=`${total?v/total*100:0}%`;});};$$('[data-range]',mount).forEach(r=>r.addEventListener('input',update));update();
+    const mount=$('[data-cost-calc]');if(!mount)return;
+    const fields=[['Storage & handling',5,0,20],['Packaging',10,0,30],['Refrigerant',7,0,25],['Shipping',35,5,80],['Loss allowance',3,0,20]];
+    const presets={baseline:[5,10,7,35,3],lean:[4,7,5,28,2],resilient:[7,13,10,42,5]};
+    mount.innerHTML=`<div class="calc-controls"><div class="calc-controls-head"><div><p class="kicker">Scenario inputs</p><h3>Cost components</h3></div><button class="calc-reset" type="button" data-cost-reset>Reset</button></div><div class="calc-presets" role="group" aria-label="Cost scenario presets"><button type="button" class="is-active" data-cost-preset="baseline">Baseline</button><button type="button" data-cost-preset="lean">Lean package</button><button type="button" data-cost-preset="resilient">Resilience</button></div>${fields.map((f,i)=>`<label class="range-row"><span>${f[0]}</span><output data-out="${i}">$${f[1].toFixed(2)}</output><input aria-label="${f[0]} cost" type="range" min="${f[2]}" max="${f[3]}" step=".5" value="${f[1]}" data-range="${i}"></label>`).join('')}</div><div class="calc-output"><div class="calc-output-head"><div><p class="kicker">Illustrative cost per order</p><div class="calc-total" data-total>$60.00</div></div><span class="calc-live"><i></i>Live model</span></div><div class="calc-bars">${fields.map((f,i)=>`<div class="calc-bar"><span>${f[0]}</span><i><span data-bar="${i}"></span></i><b data-val="${i}"></b></div>`).join('')}</div><div class="calc-composition"><span>Cost composition</span><strong data-dominant>Shipping is the largest driver</strong></div><p class="calc-note">Demonstration data only. Taxes, product cost, discounts, claims, minimums, and other commercial terms are excluded.</p></div>`;
+    const ranges=$$('[data-range]',mount);
+    const update=()=>{const vals=ranges.map(r=>Number(r.value)),total=vals.reduce((a,b)=>a+b,0),max=Math.max(...vals),dominant=fields[vals.indexOf(max)][0];$('[data-total]',mount).textContent=`$${total.toFixed(2)}`;$('[data-dominant]',mount).textContent=`${dominant} is the largest driver`;vals.forEach((v,i)=>{$(`[data-out="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-val="${i}"]`,mount).textContent=`$${v.toFixed(2)}`;$(`[data-bar="${i}"]`,mount).style.width=`${total?v/total*100:0}%`;});};
+    const applyPreset=name=>{const vals=presets[name]||presets.baseline;ranges.forEach((r,i)=>r.value=vals[i]);$$('[data-cost-preset]',mount).forEach(b=>b.classList.toggle('is-active',b.dataset.costPreset===name));update();};
+    ranges.forEach(r=>r.addEventListener('input',()=>{$$('[data-cost-preset]',mount).forEach(b=>b.classList.remove('is-active'));update();}));
+    $$('[data-cost-preset]',mount).forEach(b=>b.addEventListener('click',()=>applyPreset(b.dataset.costPreset)));
+    $('[data-cost-reset]',mount).addEventListener('click',()=>applyPreset('baseline'));
+    update();
   }
 
   function setupWizard(){
@@ -463,6 +488,7 @@
   function initPage(){
     const page=pageName();
     if(page==='home'){
+      setupHomeSystem();
       const net=$('[data-home-network]');if(net)net.innerHTML=networkMarkup();
       setupNetwork();
       renderProjects($('[data-home-projects]'),4);

@@ -1,21 +1,6 @@
 /* Kairesa v1.622 — shared motion layer.
    Only transform/opacity animations are used for smooth tablet performance. */
 
-.page-intro{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:var(--bg);transform:translateY(0);transition:transform .72s cubic-bezier(.76,0,.24,1) .34s;pointer-events:none}
-.page-intro-inner{display:grid;justify-items:center;gap:14px;min-width:180px}
-.page-intro-mark{width:48px;height:48px;opacity:0;transform:translateY(14px) scale(.92);animation:intro-mark .42s cubic-bezier(.2,.8,.2,1) forwards .08s}
-.page-intro-word{font-family:var(--serif);font-size:15px;letter-spacing:.26em;opacity:0;transform:translateY(8px);animation:intro-word .4s ease forwards .18s}
-.page-intro-inner i{display:block;width:0;height:1px;background:var(--accent);animation:intro-line .46s cubic-bezier(.2,.8,.2,1) forwards .22s}
-html.is-ready .page-intro{transform:translateY(-100%)}
-html.is-loading{overflow:hidden}
-html.is-loading .site-header{opacity:0;transform:translateY(-14px)}
-html.is-ready .site-header{animation:header-enter .58s cubic-bezier(.2,.8,.2,1) .5s both}
-html.is-leaving body{opacity:0;transform:translateY(-4px);transition:opacity .18s ease,transform .18s ease}
-
-@keyframes intro-mark{to{opacity:1;transform:none}}
-@keyframes intro-word{to{opacity:1;transform:none}}
-@keyframes intro-line{to{width:100%}}
-@keyframes header-enter{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
 
 [data-reveal]{opacity:0;transform:translateY(28px) scale(.992);filter:blur(3px);transition:opacity .78s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),transform .78s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),filter .6s ease var(--reveal-delay,0ms)}
 [data-reveal].is-visible{opacity:1;transform:none;filter:none}
@@ -69,8 +54,11 @@ body[data-page="home"] .hero::after{content:"";position:absolute;width:16px;heig
   [data-reveal]{transform:translateY(20px);filter:none}
 }
 @media(prefers-reduced-motion:reduce){
-  .page-intro{display:none}
-  html.is-loading{overflow:auto}
   [data-reveal]{opacity:1!important;transform:none!important;filter:none!important}
   .discipline-network svg line,.network-core,.product-lines span,.calendar-event,body[data-page="home"] .hero::before,body[data-page="home"] .hero::after{animation:none!important}
 }
+
+/* v1.700 performance override: no blocking entry scene, no continuous hero ornament. */
+body[data-page="home"] .hero::before,body[data-page="home"] .hero::after{animation:none!important}
+[data-reveal]{filter:none;transform:translateY(18px);transition:opacity .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms),transform .55s cubic-bezier(.2,.8,.2,1) var(--reveal-delay,0ms)}
+[data-reveal].is-visible{opacity:1;transform:none}

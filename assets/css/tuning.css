@@ -102,3 +102,121 @@
   .discipline-network{height:500px;min-height:500px}
   .case-summary-grid{grid-template-columns:1fr}
 }
+
+/* Kairesa v1.700 — golden-ratio interface system */
+:root{
+  --phi:1.618;
+  --golden-wide:61.8%;
+  --golden-narrow:38.2%;
+  --content-measure:68ch;
+}
+
+/* Reliable image-based navigation mark. This avoids Safari mask rendering failures. */
+.brand-mark--image::before{display:none!important}
+.brand-mark--image{display:grid!important;place-items:center;overflow:visible!important}
+.brand-mark-img{display:block;width:100%;height:100%;object-fit:contain}
+.brand-mark-img--dark{display:none}
+:root[data-theme="dark"] .brand-mark-img--light{display:none}
+:root[data-theme="dark"] .brand-mark-img--dark{display:block}
+#site-header .brand{position:relative;z-index:2}
+#site-header .brand-mark{width:40px;height:40px;flex:0 0 40px}
+#site-header .brand-word{white-space:nowrap}
+
+/* The site opens immediately; no blocking curtain or delayed page exit. */
+
+/* Golden-ratio rhythm and accessible interaction. */
+.shell{width:min(calc(100% - 42px),1280px)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.site-header{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.header-inner{gap:21px}
+.desktop-nav{gap:34px}
+.page-hero{padding:89px 0 55px}
+.page-hero-grid{grid-template-columns:minmax(0,1.618fr) minmax(300px,1fr);gap:55px;align-items:end}
+.page-aside{max-width:38rem}
+
+/* Shared work-card system used on Home and Work. */
+.project-grid{gap:21px;align-items:start}
+.project-card{
+  min-height:0;
+  border-radius:34px;
+  background:var(--surface);
+  box-shadow:none;
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 24px 55px rgba(17,18,22,.10);border-color:var(--line-strong)}
+.project-card .project-visual{display:block;min-height:280px;aspect-ratio:1.618/1;background:var(--surface-2);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.project-card.is-featured .project-visual{aspect-ratio:1.8/1}
+.project-card .project-content{padding:34px;display:grid;gap:18px}
+.project-card .project-content h3{font-family:var(--serif);font-size:clamp(34px,3.6vw,56px);line-height:.98;letter-spacing:-.035em;font-weight:400;margin:0}
+.project-card.is-wide .project-content h3{font-size:clamp(31px,3vw,48px)}
+.project-summary{max-width:62ch;min-height:4.6em;margin:0;color:var(--muted)}
+.project-meta{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.project-reveal{display:grid;grid-template-rows:0fr;transition:grid-template-rows .32s ease}
+.project-reveal>div{overflow:hidden}
+.project-card.is-open .project-reveal{grid-template-rows:1fr}
+.project-details{padding-top:21px;border-top:1px solid var(--line);display:grid;gap:16px}
+.project-details p{margin:0;color:var(--muted);font-size:14px}
+.project-details strong{color:var(--ink);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.project-actions{margin-top:auto;padding-top:4px;display:flex;align-items:center;justify-content:space-between;gap:13px}
+.project-expand{border:0;background:none;padding:0;color:var(--muted);font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.project-expand:hover{color:var(--ink)}
+
+.work-viz{position:absolute;inset:0;padding:34px}
+.work-viz--operations{display:grid;grid-template-columns:repeat(4,1fr);align-items:center;gap:13px}
+.work-viz--operations::before{content:"";position:absolute;left:12%;right:12%;top:50%;height:1px;background:var(--line-strong)}
+.work-viz--operations .work-viz-label{position:relative;z-index:1;display:grid;place-items:center;aspect-ratio:1;border:1px solid var(--line-strong);border-radius:50%;background:var(--surface);font-family:var(--mono);font-size:9px;letter-spacing:.1em}
+.work-viz--operations .work-viz-label:nth-child(3){background:var(--ink);color:var(--bg);transform:scale(1.08)}
+.work-viz--operations b{position:absolute;left:50%;bottom:24px;translate:-50% 0;font-family:var(--serif);font-size:44px;font-weight:400;color:var(--line-strong)}
+.work-viz--operations i{display:none}
+.work-viz--cost{display:grid;align-content:center;gap:14px}
+.work-viz--cost small{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--muted)}
+.work-viz--cost>span{display:grid;grid-template-columns:78px 1fr;gap:13px;align-items:center}
+.work-viz--cost em{font-style:normal;font-family:var(--mono);font-size:9px;color:var(--muted)}
+.work-viz--cost i{height:14px;border-radius:99px;background:linear-gradient(90deg,var(--ink) var(--w),var(--surface-3) var(--w));transition:background-position .3s ease}
+.work-viz--cost b{position:absolute;right:34px;top:28px;font-family:var(--serif);font-size:54px;font-weight:400;color:var(--accent)}
+.work-viz--learning{display:grid;grid-template-columns:1fr 1.618fr;gap:21px;align-items:center}
+.work-viz--learning>div{border:1px solid var(--line);border-radius:21px;padding:21px;background:var(--surface)}
+.work-viz--learning small,.work-viz--learning span{display:block;color:var(--muted);font-size:10px}
+.work-viz--learning strong{display:block;font-family:var(--serif);font-size:64px;line-height:1;font-weight:400;margin:13px 0 8px}
+.work-viz--learning ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,1fr);gap:8px;align-items:end;height:150px}
+.work-viz--learning li{height:32%;background:var(--surface-3);border-radius:5px}
+.work-viz--learning li.is-done{height:66%;background:var(--ink)}
+.work-viz--learning li.is-now{height:100%;background:var(--accent)}
+.work-viz--compliance{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-content:center}
+.work-viz--compliance span{display:grid;place-items:center;min-height:72px;border:1px solid var(--line);border-radius:13px;background:var(--surface);font-family:var(--mono);font-size:9px;letter-spacing:.08em}
+.work-viz--compliance span.is-hot{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.work-viz--calendar{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:center}
+.work-viz--calendar::before{content:"";position:absolute;left:10%;right:10%;top:50%;height:1px;background:var(--line-strong)}
+.work-viz--calendar span{position:relative;z-index:1;display:grid;gap:8px;place-items:center;text-align:center;min-height:92px;padding:10px;border:1px solid var(--line);border-radius:13px;background:var(--surface);font-family:var(--mono);font-size:8px;letter-spacing:.06em}
+.work-viz--calendar span i{font-style:normal;color:var(--muted)}
+.work-viz--calendar span.is-hot{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-8px)}
+.work-viz--calendar span.is-hot i{color:inherit}
+.project-card:hover .work-viz--operations .work-viz-label:nth-child(3){transform:scale(1.14)}
+.project-card:hover .work-viz--learning li.is-now{transform:translateY(-8px)}
+.project-card:hover .work-viz--calendar span.is-hot{transform:translateY(-12px)}
+.work-viz--operations .work-viz-label,.work-viz--learning li,.work-viz--calendar span{transition:transform .25s ease}
+
+@media(max-width:1240px){
+  .project-card .project-visual{min-height:240px}
+}
+@media(max-width:900px){
+  .project-card,.project-card.is-featured,.project-card.is-wide{grid-column:span 6}
+  .project-card.is-featured .project-visual,.project-card .project-visual{aspect-ratio:1.45/1}
+}
+@media(max-width:720px){
+  .shell{width:min(calc(100% - 26px),1280px)}
+  #site-header .brand-mark{width:34px;height:34px;flex-basis:34px}
+  .project-card,.project-card.is-featured,.project-card.is-wide{grid-column:1}
+  .project-card .project-content{padding:26px}
+  .project-card .project-visual{min-height:230px;aspect-ratio:auto}
+  .project-summary{min-height:0}
+  .work-viz{padding:24px}
+  .work-viz--operations .work-viz-label{font-size:8px}
+  .work-viz--learning{grid-template-columns:1fr 1.25fr}
+  .work-viz--learning strong{font-size:48px}
+  .work-viz--calendar{grid-template-columns:repeat(5,minmax(48px,1fr));overflow:hidden}
+}
+
+/* Native hidden state must win over card display declarations. */
+[hidden]{display:none!important}
