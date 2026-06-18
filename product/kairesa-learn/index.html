@@ -84,11 +84,6 @@
     @media(max-width:580px){.brand span:last-child{font-size:15px}.pageHead{align-items:flex-start}.pageHead .datePick{max-width:145px}.kpiGrid{grid-template-columns:repeat(6,155px)}.kpi{min-height:112px;padding:13px}.planRow{grid-template-columns:70px 24px minmax(0,1fr) 34px;gap:6px}.formGrid{grid-template-columns:1fr}.progressRow{grid-template-columns:112px minmax(0,1fr) 38px}.cycleBottom{gap:14px}.cashEditor{grid-template-columns:1fr}.topActions .topBtn:nth-child(2){display:none}.modal{padding:8px}.modalCard{max-height:94vh;border-radius:16px}.tableWrap{margin-inline:-15px;border-left:0;border-right:0;border-radius:0}.sectionTitle{align-items:center}.sectionTitle h2{font-size:17px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
   </style>
-  <script>
-    if(location.pathname.endsWith('/index.html')){
-      location.replace(location.pathname.slice(0,-10) + location.search + location.hash);
-    }
-  </script>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
@@ -119,7 +114,6 @@
       <a class="brand" href="#home" data-view-link="home"><span class="brandMark">K</span><span>Kairesa Learn</span></a>
     </div>
     <div class="topActions">
-      <a class="topBtn" href="/" aria-label="返回 Kairesa 官网"><span>← Kairesa.com</span></a>
       <a class="topBtn" id="webcalTop" href="#"><svg class="icon"><use href="#i-calendar"/></svg><span>订阅主日历</span></a>
       <button class="topBtn" id="exportTop"><svg class="icon"><use href="#i-download"/></svg><span>导出数据</span></button>
       <button class="iconBtn" id="themeToggle" aria-label="切换亮暗模式"><svg class="icon"><use href="#i-sun"/></svg></button>
