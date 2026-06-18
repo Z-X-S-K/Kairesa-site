@@ -18,112 +18,39 @@
   <meta property="og:description" content="A renewable ICS calendar feed for high-impact USD economic events, generated from structured source data.">
   <meta property="og:image" content="https://kairesa.com/assets/img/og-card.svg">
 </head>
-<body data-page="product" data-product="calendar" class="product-page product-page--calendar">
+<body data-page="product" class="product-page">
 <a class="skip-link" href="#main">Skip to content</a>
 <div id="site-header"></div>
 <main id="main">
-  <section class="product-hero product-hero--calendar product-hero--calendar-v2">
-    <div class="shell product-hero-grid calendar-hero-grid">
-      <div class="calendar-hero-copy" data-reveal>
-        <span class="product-badge product-badge--live">Kairesa Product · Live Macro Feed</span>
+  <section class="product-hero">
+    <div class="shell product-hero-grid">
+      <div data-reveal>
+        <span class="product-badge">Kairesa Product · Calendar Automation</span>
         <h1 class="product-title">Kairesa<br>Calendar.</h1>
-        <p class="product-lead">A dedicated market-watch product for high-impact USD releases—built to surface what matters now, explain why it matters, and publish the signal into a renewable ICS subscription.</p>
+        <p class="product-lead">A source-to-calendar pipeline that converts high-impact USD economic events into a renewable ICS subscription.</p>
         <div class="product-actions">
           <a class="button button--solid" href="webcal://kairesa.com/product/kairesa-calendar/calendar.ics">Subscribe to calendar ↗</a>
           <a class="button button--soft" href="/product/kairesa-calendar/calendar.ics">Download ICS</a>
         </div>
-        <div class="calendar-hero-stats">
-          <article><span>Coverage</span><strong>USD high impact</strong></article>
-          <article><span>Output</span><strong>Live feed + ICS</strong></article>
-          <article><span>Purpose</span><strong>Decision support</strong></article>
-        </div>
       </div>
-      <div class="calendar-hero-board calendar-hero-board--premium" data-reveal>
-        <div class="calendar-board-top"><strong>Live market pulse</strong><span class="live-dot">Auto-updating</span></div>
-        <div class="calendar-board-grid calendar-board-grid--premium">
-          <div class="calendar-feed-panel calendar-feed-panel--primary" data-calendar-live>
-            <div class="calendar-feed-empty">Loading live USD events…</div>
-          </div>
-          <aside class="calendar-brief-panel" data-market-brief>
-            <div class="calendar-feed-empty">Building the latest market brief…</div>
-          </aside>
-        </div>
-        <div class="calendar-board-foot">
-          <div><span>Feed source</span><strong>High-impact USD events</strong></div>
-          <div><span>Delivery</span><strong>Readable web feed + ICS subscription</strong></div>
+      <div class="feed-panel" data-reveal>
+        <div class="feed-top"><strong>USD · High impact</strong><span class="live-dot">Renewable feed</span></div>
+        <div class="feed-list">
+          <div class="feed-item"><time>08:30 ET</time><strong>Inflation release</strong><span>HIGH</span></div>
+          <div class="feed-item"><time>14:00 ET</time><strong>Federal Reserve decision</strong><span>HIGH</span></div>
+          <div class="feed-item"><time>08:30 ET</time><strong>Employment report</strong><span>HIGH</span></div>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="section section--border calendar-site-section calendar-site-section--dark">
-    <div class="shell">
-      <div class="section-head" data-reveal>
-        <div><p class="kicker">Product logic</p><h2 class="section-title">A signal system, not just a calendar list.</h2></div>
-        <p class="body-lg">Kairesa Calendar is designed to help a user see the important event, understand its likely relevance, and keep the information alive inside their own workflow.</p>
-      </div>
-      <div class="calendar-feature-rail">
-        <article class="calendar-logic-card" data-reveal><span>01</span><h3>Detect</h3><p>Track market-moving USD releases with an emphasis on events most likely to affect rates, FX, gold, and broad risk sentiment.</p></article>
-        <article class="calendar-logic-card" data-reveal><span>02</span><h3>Interpret</h3><p>Turn the raw event into a compact market brief so the feed reads like a usable product rather than a bare schedule.</p></article>
-        <article class="calendar-logic-card" data-reveal><span>03</span><h3>Deliver</h3><p>Publish the information into a renewable ICS endpoint so the same signal can live in Apple Calendar, Google Calendar, or Outlook.</p></article>
-      </div>
+  <section class="section section--border">
+    <div class="shell product-feature-grid">
+      <article class="product-feature"><p class="kicker">01 · Source</p><h2>Normalize</h2><p>Fetch events, standardize dates, currencies, impact levels, and descriptions.</p></article>
+      <article class="product-feature"><p class="kicker">02 · Filter</p><h2>Prioritize</h2><p>Keep high-impact USD releases and selected market-moving event types.</p></article>
+      <article class="product-feature"><p class="kicker">03 · Deliver</p><h2>Subscribe</h2><p>Publish a calendar-compatible ICS feed with reminders and event context.</p></article>
     </div>
   </section>
-
-  <section class="section section--border calendar-site-section">
-    <div class="shell">
-      <div class="section-head" data-reveal>
-        <div><p class="kicker">Live feed</p><h2 class="section-title">Upcoming and recent USD high-impact events.</h2></div>
-        <p class="body-lg">The page checks for the latest market-moving USD releases and turns them into a readable feed, a quick market brief, and a calendar subscription.</p>
-      </div>
-      <div class="calendar-live-timeline" data-calendar-timeline data-reveal>
-        <div class="calendar-feed-empty">Live event timeline will appear here.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--border calendar-site-section calendar-pipeline-section">
-    <div class="shell">
-      <div class="section-head" data-reveal>
-        <div><p class="kicker">System pipeline</p><h2 class="section-title">From market signal to reusable calendar feed.</h2></div>
-        <p class="body-lg">The same product flow that powers the live page also supports a simple subscription model for recurring market awareness.</p>
-      </div>
-      <div class="pipeline-grid">
-        <article class="pipeline-card" data-reveal><span>01</span><h3>Source</h3><p>Current macro releases are checked and filtered for high-impact USD relevance.</p></article>
-        <article class="pipeline-card" data-reveal><span>02</span><h3>Normalize</h3><p>Time, title, and event metadata are structured into a clean, consistent format.</p></article>
-        <article class="pipeline-card" data-reveal><span>03</span><h3>Explain</h3><p>The product adds a short reason-why layer so users understand the signal, not just the timestamp.</p></article>
-        <article class="pipeline-card" data-reveal><span>04</span><h3>Publish</h3><p>The information appears on the page and is also available through the renewable ICS endpoint.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--border calendar-site-section">
-    <div class="shell calendar-usage-grid">
-      <div class="usage-copy" data-reveal>
-        <p class="kicker">Use cases</p>
-        <h2 class="section-title">Made for recurring macro awareness.</h2>
-        <p class="body-lg">The product is useful for traders, researchers, operators, or anyone who wants important market events to remain visible without manually rebuilding the list every week.</p>
-      </div>
-      <div class="usage-cards">
-        <article class="usage-card" data-reveal><span>For trading</span><strong>Keep event risk visible inside the same personal workflow.</strong></article>
-        <article class="usage-card" data-reveal><span>For research</span><strong>Track recurring macro catalysts without rebuilding the watchlist manually.</strong></article>
-        <article class="usage-card" data-reveal><span>For operations</span><strong>Use the ICS feed as a simple recurring information pipeline.</strong></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--border calendar-site-section">
-    <div class="shell calendar-subscribe-band" data-reveal>
-      <div>
-        <p class="kicker">Feed address</p>
-        <div class="code-path">https://kairesa.com/product/kairesa-calendar/calendar.ics</div>
-      </div>
-      <div class="calendar-subscribe-actions">
-        <a class="button button--solid" href="webcal://kairesa.com/product/kairesa-calendar/calendar.ics">Subscribe via webcal ↗</a>
-        <a class="button button--soft" href="/product/kairesa-calendar/calendar.ics">Download ICS</a>
-      </div>
-    </div>
-  </section>
+  <section class="section section--border"><div class="shell"><p class="kicker">Feed address</p><div class="code-path">https://kairesa.com/product/kairesa-calendar/calendar.ics</div></div></section>
 </main>
 <div id="site-footer"></div>
 <script src="/assets/js/site.js"></script>
