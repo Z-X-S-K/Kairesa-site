@@ -1,7 +1,0 @@
-/* Insights page module */
-.insight-brief-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:21px}
-.insight-brief{border:1px solid var(--line);border-radius:34px;background:var(--surface);padding:34px;min-height:300px;display:flex;flex-direction:column;align-items:flex-start}
-.insight-brief h2{font-family:var(--serif);font-size:clamp(32px,3.3vw,48px);line-height:1;font-weight:400;margin:18px 0}
-.insight-brief p:not(.kicker){color:var(--muted);margin:0 0 21px}
-.insight-brief .chip{margin-top:auto}
-@media(max-width:800px){.insight-brief-grid{grid-template-columns:1fr}}
